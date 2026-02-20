@@ -1,0 +1,111 @@
+{
+  "Navigation": {
+    "home": "Inicio",
+    "gallery": "Galería",
+    "about": "Sobre Mí",
+    "contact": "Contacto"
+  },
+  "Common": {
+    "viewGallery": "Ver Galería",
+    "viewAll": "Ver Todo",
+    "inquire": "Consultar",
+    "whatsappInquiry": "Consultar por WhatsApp",
+    "whatsappMessage": "Hola, me interesa la obra \"{title}\"",
+    "whatsappGeneric": "Hola, me interesa su obra",
+    "price": "Precio",
+    "available": "Disponible",
+    "sold": "Vendida",
+    "reserved": "Reservada",
+    "donated": "Donada",
+    "privateCollection": "Colección Privada",
+    "notForSale": "No está en venta",
+    "inquireSimilar": "Consultar por obra similar",
+    "linkCopied": "Enlace copiado",
+    "share": "Compartir",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "switchLanguage": "Switch to English",
+    "switchLanguageLabel": "English",
+    "medium": "Técnica",
+    "dimensions": "Dimensiones",
+    "year": "Año",
+    "oneOfAKind": "Pieza Única",
+    "certificate": "Certificado de Autenticidad",
+    "allWorks": "Todas",
+    "oil": "Óleo",
+    "acrylic": "Acrílico",
+    "watercolor": "Acuarela",
+    "portrait": "Retrato",
+    "figurative": "Figurativo",
+    "landscape": "Paisaje",
+    "loading": "Cargando..."
+  },
+  "HomePage": {
+    "heroSubtitle": "Artista Plástico, Médico Cirujano y Gestor Cultural · Cuenca, Ecuador",
+    "heroButton": "Explorar la Colección",
+    "featuredWorks": "Obras Destacadas",
+    "artistStatement": "En Sus Palabras",
+    "selectedWorks": "Obras Seleccionadas",
+    "process": "Arte y Medicina",
+    "processDescription": "Una vida entre el quirófano y el lienzo. Desde los cuatro años, el arte y la medicina han sido los dos pilares de mi vida — caminos que se cruzan en cada obra.",
+    "ctaTitle": "¿Le Interesa una Obra?",
+    "ctaDescription": "Óleos originales que exploran la condición humana desde la mirada de un médico y artista autodidacta. Consulte disponibilidad o encargue una pieza personalizada.",
+    "ctaButton": "Contactar por WhatsApp"
+  },
+  "Gallery": {
+    "title": "Galería",
+    "filterAll": "Todas",
+    "filterMedium": "Técnica",
+    "filterSubject": "Tema",
+    "filterAvailability": "Disponibilidad",
+    "filterYear": "Año",
+    "viewGrid": "Cuadrícula",
+    "viewList": "Lista",
+    "noResults": "No se encontraron obras con estos filtros.",
+    "showingCount": "Mostrando {count} obras"
+  },
+  "Artwork": {
+    "details": "Detalles",
+    "story": "Historia de la Obra",
+    "relatedWorks": "Obras Relacionadas",
+    "faq": "Preguntas Frecuentes",
+    "shippingQuestion": "¿Cómo es el envío?",
+    "shippingAnswer": "Cada obra se empaca profesionalmente con materiales de conservación. Envío nacional disponible desde Cuenca. Envío internacional bajo consulta. Incluye seguro y seguimiento.",
+    "framingQuestion": "¿Incluye marco?",
+    "framingAnswer": "Las obras se entregan sin marco para permitir la personalización. Puedo recomendar enmarcadores profesionales en Cuenca y otras ciudades.",
+    "commissionQuestion": "¿Acepta encargos?",
+    "commissionAnswer": "Sí, acepto encargos de retratos, obras figurativas y murales. Contácteme por WhatsApp para conversar sobre su proyecto.",
+    "returnsQuestion": "¿Cuál es la política de devoluciones?",
+    "returnsAnswer": "Su satisfacción es mi prioridad. Si al recibir la obra no cumple sus expectativas, contácteme dentro de los primeros 14 días para coordinar la devolución."
+  },
+  "About": {
+    "title": "Sobre el Artista",
+    "statement": "Declaración Artística",
+    "exhibitions": "Exposiciones",
+    "press": "Prensa y Publicaciones",
+    "solo": "Individual",
+    "group": "Colectiva",
+    "fair": "Feria"
+  },
+  "Contact": {
+    "title": "Contacto",
+    "subtitle": "Adquisiciones, encargos, exposiciones o simplemente una conversación sobre arte — será un gusto atenderle.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono (opcional)",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "orWhatsApp": "O contácteme directamente por WhatsApp",
+    "success": "¡Mensaje enviado! Le responderé pronto.",
+    "error": "Hubo un error. Por favor intente de nuevo."
+  },
+  "Footer": {
+    "rights": "Todos los derechos reservados",
+    "tagline": "Artista plástico, médico cirujano y gestor cultural · Cuenca, Ecuador"
+  },
+  "NotFound": {
+    "title": "Página No Encontrada",
+    "description": "La página que busca no existe o fue trasladada.",
+    "backHome": "Volver al Inicio"
+  }
+}
