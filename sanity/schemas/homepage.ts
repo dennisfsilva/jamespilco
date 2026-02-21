@@ -8,20 +8,14 @@ export default defineType({
     defineField({
       name: "heroPaintings",
       title: "Hero Paintings",
-      description: "3-5 paintings for the hero rotation",
+      description: "Select the hero painting for the homepage",
       type: "array",
       of: [{ type: "reference", to: [{ type: "artwork" }] }],
       validation: (rule) => rule.min(1).max(5),
     }),
     defineField({
       name: "featuredWorks",
-      title: "Featured Works (Carousel)",
-      type: "array",
-      of: [{ type: "reference", to: [{ type: "artwork" }] }],
-    }),
-    defineField({
-      name: "selectedWorks",
-      title: "Selected Works (Grid)",
+      title: "Featured Works (Horizontal Scroll)",
       type: "array",
       of: [{ type: "reference", to: [{ type: "artwork" }] }],
     }),
@@ -41,9 +35,5 @@ export default defineType({
       ],
     }),
   ],
-  preview: {
-    prepare() {
-      return { title: "Homepage Settings" };
-    },
-  },
+  preview: { prepare: () => ({ title: "Homepage Settings" }) },
 });

@@ -30,7 +30,8 @@ const SITE_SETTINGS_FALLBACK: SiteSettings = {
   whatsappNumber: "593999256686",
   email: "james@jamespilco.com",
   instagram: "https://instagram.com/jamespilcoluzuriaga",
-  linkedin: "https://www.linkedin.com/in/james-stanley-pilco-luzuriaga-5a557040/",
+  linkedin:
+    "https://www.linkedin.com/in/james-stanley-pilco-luzuriaga-5a557040/",
   location: "Cuenca, Ecuador",
 };
 

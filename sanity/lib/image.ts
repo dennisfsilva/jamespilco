@@ -11,7 +11,6 @@ export function urlForImage(source: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function resolveImageUrl(source: any): string {
-  // Placeholder data uses plain URLs as asset._ref — pass them through as-is
   const ref = source?.asset?._ref ?? source?._ref ?? source;
   if (typeof ref === "string" && !ref.startsWith("image-")) {
     return ref;
@@ -21,7 +20,6 @@ export function resolveImageUrl(source: any): string {
 
 export function resolveArtworkImageUrls(artworks: Artwork[]): Artwork[] {
   return artworks.map((a) => {
-    // GROQ `images[0]` returns a single object; `...` spread returns the full array
     const image = Array.isArray(a.images) ? a.images[0] : a.images;
     return {
       ...a,

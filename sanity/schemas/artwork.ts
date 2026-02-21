@@ -48,16 +48,8 @@ export default defineType({
         { name: "depth", type: "number", title: "Depth (cm)" },
       ],
     }),
-    defineField({
-      name: "year",
-      title: "Year",
-      type: "number",
-    }),
-    defineField({
-      name: "price",
-      title: "Price (USD)",
-      type: "number",
-    }),
+    defineField({ name: "year", title: "Year", type: "number" }),
+    defineField({ name: "price", title: "Price (USD)", type: "number" }),
     defineField({
       name: "availability",
       title: "Availability",
@@ -88,35 +80,14 @@ export default defineType({
       type: "array",
       of: [{ type: "reference", to: [{ type: "category" }] }],
     }),
-    defineField({
-      name: "featured",
-      title: "Featured",
-      type: "boolean",
-      initialValue: false,
-    }),
-    defineField({
-      name: "order",
-      title: "Display Order",
-      type: "number",
-    }),
+    defineField({ name: "featured", title: "Featured", type: "boolean", initialValue: false }),
+    defineField({ name: "order", title: "Display Order", type: "number" }),
   ],
   orderings: [
-    {
-      title: "Year, New",
-      name: "yearDesc",
-      by: [{ field: "year", direction: "desc" }],
-    },
-    {
-      title: "Display Order",
-      name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }],
-    },
+    { title: "Year, New", name: "yearDesc", by: [{ field: "year", direction: "desc" }] },
+    { title: "Display Order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
   preview: {
-    select: {
-      title: "title.en",
-      subtitle: "medium.en",
-      media: "images.0",
-    },
+    select: { title: "title.en", subtitle: "medium.en", media: "images.0" },
   },
 });

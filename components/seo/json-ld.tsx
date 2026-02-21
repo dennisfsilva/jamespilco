@@ -1,92 +1,72 @@
 import type { Artwork } from "@/types/artwork";
-import { getLocalizedText, formatDimensions } from "@/lib/locale-text";
+import { getLocalizedText, formatPrice, formatDimensions } from "@/lib/locale-text";
+import { resolveImageUrl } from "@/sanity/lib/image";
+import { SITE_CONFIG } from "@/lib/constants";
 
-interface ArtworkJsonLdProps {
-  artwork: Artwork;
-  locale: string;
-  imageUrl: string;
-}
-
-export function ArtworkJsonLd({ artwork, locale, imageUrl }: ArtworkJsonLdProps) {
-  const jsonLd = {
+export function PersonJsonLd() {
+  const data = {
     "@context": "https://schema.org",
-    "@type": "VisualArtwork",
-    name: getLocalizedText(artwork.title, locale),
-    image: imageUrl,
-    dateCreated: String(artwork.year),
-    artform: "painting",
-    artMedium: getLocalizedText(artwork.medium, locale),
-    ...(artwork.dimensions && {
-      width: {
-        "@type": "Distance",
-        name: `${artwork.dimensions.width} cm`,
-      },
-      height: {
-        "@type": "Distance",
-        name: `${artwork.dimensions.height} cm`,
-      },
-    }),
-    ...(artwork.price &&
-      artwork.availability === "available" && {
-        offers: {
-          "@type": "Offer",
-          price: artwork.price,
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-        },
-      }),
-    creator: {
-      "@type": "Person",
-      name: "James Pilco Luzuriaga",
-      url: "https://jamespilco.com",
+    "@type": "Person",
+    name: "James Pilco Luzuriaga",
+    jobTitle: "Visual Artist & Surgeon",
+    url: SITE_CONFIG.siteUrl,
+    sameAs: [SITE_CONFIG.instagram, SITE_CONFIG.linkedin],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Cuenca",
+      addressCountry: "EC",
     },
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
 }
 
-export function PersonJsonLd() {
-  const jsonLd = {
+export function ArtworkJsonLd({
+  artwork,
+  locale,
+}: {
+  artwork: Artwork;
+  locale: string;
+}) {
+  const title = getLocalizedText(artwork.title, locale);
+  const imageUrl = resolveImageUrl(artwork.images[0]);
+
+  const data: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "James Pilco Luzuriaga",
-    url: "https://jamespilco.com",
-    jobTitle: "Surgeon & Visual Artist",
-    description:
-      "Ecuadorian surgeon, visual artist and cultural manager from Cuenca, Ecuador. Self-taught painter since age four, founding professor of the Faculty of Medicine at Universidad del Azuay.",
-    sameAs: [
-      "https://instagram.com/jamespilcoluzuriaga",
-      "https://www.linkedin.com/in/james-stanley-pilco-luzuriaga-5a557040/",
-    ],
-    nationality: {
-      "@type": "Country",
-      name: "Ecuador",
+    "@type": "VisualArtwork",
+    name: title,
+    image: imageUrl,
+    artist: {
+      "@type": "Person",
+      name: "James Pilco Luzuriaga",
     },
-    alumniOf: [
-      {
-        "@type": "CollegeOrUniversity",
-        name: "Universidad de Cuenca",
-      },
-      {
-        "@type": "CollegeOrUniversity",
-        name: "Universidad Nacional Autónoma de México (UNAM)",
-      },
-    ],
-    worksFor: {
-      "@type": "CollegeOrUniversity",
-      name: "Universidad del Azuay",
-    },
+    artMedium: getLocalizedText(artwork.medium, locale),
+    dateCreated: String(artwork.year),
   };
+
+  if (artwork.dimensions) {
+    data.width = { "@type": "Distance", name: `${artwork.dimensions.width} cm` };
+    data.height = { "@type": "Distance", name: `${artwork.dimensions.height} cm` };
+  }
+
+  if (artwork.availability === "available" && artwork.price) {
+    data.offers = {
+      "@type": "Offer",
+      price: artwork.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    };
+  }
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
 }

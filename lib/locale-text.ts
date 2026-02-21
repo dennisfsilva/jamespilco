@@ -14,9 +14,9 @@ export function formatDimensions(
   if (!dimensions) return "";
   const { width, height, depth } = dimensions;
   if (depth) {
-    return `${height} × ${width} × ${depth} cm`;
+    return `${height} \u00d7 ${width} \u00d7 ${depth} cm`;
   }
-  return `${height} × ${width} cm`;
+  return `${height} \u00d7 ${width} cm`;
 }
 
 export function formatPrice(price: number | undefined): string {
@@ -30,11 +30,14 @@ export function formatPrice(price: number | undefined): string {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function toPlainText(blocks: any[] | undefined | null): string {
+export function toPlainText(blocks: any[] | undefined | null): string {
   if (!blocks || !Array.isArray(blocks)) return "";
   return blocks
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .filter((block: any) => block._type === "block" && block.children)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .map((block: any) =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       block.children.map((child: any) => child.text || "").join("")
     )
     .join("\n\n");
@@ -46,5 +49,6 @@ export function getLocalizedBlock(
 ): string {
   if (!obj) return "";
   const blocks = obj[locale as keyof LocalizedBlock] || obj.es || obj.en;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return toPlainText(blocks as any[]);
 }

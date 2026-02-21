@@ -14,12 +14,7 @@ export default defineType({
         { name: "en", type: "string", title: "English" },
       ],
     }),
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "title.en" },
-    }),
+    defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "title.en" } }),
     defineField({
       name: "type",
       title: "Category Type",
@@ -33,10 +28,5 @@ export default defineType({
       },
     }),
   ],
-  preview: {
-    select: {
-      title: "title.en",
-      subtitle: "type",
-    },
-  },
+  preview: { select: { title: "title.en", subtitle: "type" } },
 });

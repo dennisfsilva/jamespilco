@@ -3,21 +3,34 @@
 import { useState, useEffect, useRef } from "react";
 
 export function useScrollDirection() {
-  const [direction, setDirection] = useState<"up" | "down">("up");
-  const [isAtTop, setIsAtTop] = useState(true);
-  const prevScroll = useRef(0);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("up");
+  const [scrollY, setScrollY] = useState(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    function handleScroll() {
-      const currentScroll = window.scrollY;
-      setIsAtTop(currentScroll < 10);
-      setDirection(currentScroll > prevScroll.current ? "down" : "up");
-      prevScroll.current = currentScroll;
-    }
+    let lastScrollY = window.scrollY;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const updateScrollDirection = () => {
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+
+      if (Math.abs(currentScrollY - lastScrollY) > 5) {
+        setScrollDirection(currentScrollY > lastScrollY ? "down" : "up");
+        lastScrollY = currentScrollY;
+      }
+      ticking.current = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateScrollDirection);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return { direction, isAtTop };
+  return { scrollDirection, scrollY };
 }

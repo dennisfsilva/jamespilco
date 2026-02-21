@@ -1,40 +1,31 @@
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getLocale } from "next-intl/server";
 import { fetchSiteSettings } from "@/sanity/lib/client";
 import { SiteSettingsProvider } from "@/lib/site-settings-context";
-import { Header } from "@/components/layout/header";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
+import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
-import { WhatsAppButton } from "@/components/layout/whatsapp-button";
-import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { WhatsAppFab } from "@/components/layout/whatsapp-fab";
 
-type Props = {
+export default async function SiteLayout({
+  children,
+}: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-};
-
-export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  const [messages, siteSettings] = await Promise.all([
+}) {
+  const [messages, settings, locale] = await Promise.all([
     getMessages(),
     fetchSiteSettings(),
+    getLocale(),
   ]);
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      <SiteSettingsProvider settings={siteSettings}>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <SiteSettingsProvider settings={settings}>
         <SmoothScrollProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1 pt-16">{children}</main>
-            <Footer />
-          </div>
-          <WhatsAppButton />
+          <Navigation />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <WhatsAppFab />
         </SmoothScrollProvider>
       </SiteSettingsProvider>
     </NextIntlClientProvider>

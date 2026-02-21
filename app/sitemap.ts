@@ -1,80 +1,58 @@
 import type { MetadataRoute } from "next";
-import { sanityFetch } from "@/sanity/lib/client";
-import { ALL_ARTWORKS_QUERY } from "@/sanity/lib/queries";
 import { placeholderArtworks } from "@/lib/placeholder-data";
-import type { Artwork } from "@/types/artwork";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://jamespilco.com";
+const BASE_URL = "https://jamespilco.com";
 
-  const cmsArtworks = await sanityFetch<Artwork[] | null>(ALL_ARTWORKS_QUERY);
-  const artworks =
-    cmsArtworks && cmsArtworks.length > 0 ? cmsArtworks : placeholderArtworks;
-
-  const artworkUrls = artworks.flatMap((artwork) => [
-    {
-      url: `${baseUrl}/artwork/${artwork.slug.current}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+export default function sitemap(): MetadataRoute.Sitemap {
+  const artworkRoutes = placeholderArtworks.map((artwork) => ({
+    url: `${BASE_URL}/artwork/${artwork.slug.current}`,
+    lastModified: new Date(),
+    alternates: {
+      languages: {
+        es: `${BASE_URL}/artwork/${artwork.slug.current}`,
+        en: `${BASE_URL}/en/artwork/${artwork.slug.current}`,
+      },
     },
-    {
-      url: `${baseUrl}/en/artwork/${artwork.slug.current}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-  ]);
+  }));
 
   return [
     {
-      url: baseUrl,
+      url: BASE_URL,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
+      alternates: {
+        languages: { es: BASE_URL, en: `${BASE_URL}/en` },
+      },
     },
     {
-      url: `${baseUrl}/en`,
+      url: `${BASE_URL}/gallery`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
+      alternates: {
+        languages: {
+          es: `${BASE_URL}/gallery`,
+          en: `${BASE_URL}/en/gallery`,
+        },
+      },
     },
     {
-      url: `${baseUrl}/gallery`,
+      url: `${BASE_URL}/about`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      alternates: {
+        languages: {
+          es: `${BASE_URL}/about`,
+          en: `${BASE_URL}/en/about`,
+        },
+      },
     },
     {
-      url: `${baseUrl}/en/gallery`,
+      url: `${BASE_URL}/contact`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      alternates: {
+        languages: {
+          es: `${BASE_URL}/contact`,
+          en: `${BASE_URL}/en/contact`,
+        },
+      },
     },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/en/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/en/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    ...artworkUrls,
+    ...artworkRoutes,
   ];
 }

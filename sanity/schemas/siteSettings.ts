@@ -5,35 +5,11 @@ export default defineType({
   title: "Site Settings",
   type: "document",
   fields: [
-    defineField({
-      name: "whatsappNumber",
-      title: "WhatsApp Number (with country code)",
-      type: "string",
-    }),
-    defineField({
-      name: "email",
-      title: "Email",
-      type: "string",
-    }),
-    defineField({
-      name: "instagram",
-      title: "Instagram URL",
-      type: "url",
-    }),
-    defineField({
-      name: "linkedin",
-      title: "LinkedIn URL",
-      type: "url",
-    }),
-    defineField({
-      name: "location",
-      title: "City, Country",
-      type: "string",
-    }),
+    defineField({ name: "whatsappNumber", title: "WhatsApp Number (with country code)", type: "string" }),
+    defineField({ name: "email", title: "Email", type: "string" }),
+    defineField({ name: "instagram", title: "Instagram URL", type: "url" }),
+    defineField({ name: "linkedin", title: "LinkedIn URL", type: "url" }),
+    defineField({ name: "location", title: "City, Country", type: "string" }),
   ],
-  preview: {
-    prepare() {
-      return { title: "Site Settings" };
-    },
-  },
+  preview: { prepare: () => ({ title: "Site Settings" }) },
 });

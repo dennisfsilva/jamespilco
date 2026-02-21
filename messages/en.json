@@ -1,111 +1,94 @@
 {
-  "Navigation": {
-    "home": "Home",
+  "nav": {
     "gallery": "Gallery",
     "about": "About",
     "contact": "Contact"
   },
-  "Common": {
-    "viewGallery": "View Gallery",
-    "viewAll": "View All",
-    "inquire": "Inquire",
-    "whatsappInquiry": "Inquire via WhatsApp",
-    "whatsappMessage": "Hello, I'm interested in the artwork \"{title}\"",
-    "whatsappGeneric": "Hello, I'm interested in your artwork",
-    "price": "Price",
+  "home": {
+    "hero": {
+      "name": "JAMES PILCO LUZURIAGA",
+      "title": "Where medicine\nmeets the canvas",
+      "subtitle": "Surgeon · Artist · Professor · Cuenca, Ecuador"
+    },
+    "duality": {
+      "label": "The artist",
+      "highlight1": "the most important form of human expression",
+      "highlight2": "where medicine meets the canvas",
+      "highlight3": "the stories that inhabit every face"
+    },
+    "featured": {
+      "label": "FEATURED WORKS",
+      "viewWork": "View work",
+      "viewAll": "View full collection"
+    },
+    "quote": "The hardest thing is learning to graduate as human beings.",
+    "quoteAttribution": "— James Pilco Luzuriaga",
+    "quoteTranslation": "\"Lo más difícil es aprender a graduarse de seres humanos.\"",
+    "cta": {
+      "title": "Every work tells a story.\nWhat will yours be?",
+      "gallery": "Explore gallery",
+      "whatsapp": "Let's talk on WhatsApp"
+    }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Each canvas holds a fragment of the human",
+    "filterAll": "All",
+    "noResults": "No works found with these filters."
+  },
+  "artwork": {
     "available": "Available",
     "sold": "Sold",
+    "soldNote": "This work found its home",
+    "nfs": "Private collection",
     "reserved": "Reserved",
     "donated": "Donated",
-    "privateCollection": "Private Collection",
-    "notForSale": "Not for Sale",
-    "inquireSimilar": "Inquire about similar work",
-    "linkCopied": "Link copied",
+    "inquire": "Inquire about this work",
+    "trust": "Original work · Certificate of authenticity · Shipping available",
+    "related": "Works you might love",
+    "zoom": "Zoom image",
     "share": "Share",
-    "darkMode": "Dark mode",
-    "lightMode": "Light mode",
-    "switchLanguage": "Cambiar a Español",
-    "switchLanguageLabel": "Español",
-    "medium": "Medium",
-    "dimensions": "Dimensions",
-    "year": "Year",
-    "oneOfAKind": "One of a Kind",
-    "certificate": "Certificate of Authenticity",
-    "allWorks": "All",
-    "oil": "Oil",
-    "acrylic": "Acrylic",
-    "watercolor": "Watercolor",
-    "portrait": "Portrait",
-    "figurative": "Figurative",
-    "landscape": "Landscape",
-    "loading": "Loading..."
+    "email": "Inquire by email"
   },
-  "HomePage": {
-    "heroSubtitle": "Visual Artist, Surgeon & Cultural Manager · Cuenca, Ecuador",
-    "heroButton": "Explore the Collection",
-    "featuredWorks": "Featured Works",
-    "artistStatement": "In His Words",
-    "selectedWorks": "Selected Works",
-    "process": "Art & Medicine",
-    "processDescription": "A life between the operating room and the canvas. Since the age of four, art and medicine have been the two pillars of my life — paths that converge in every work.",
-    "ctaTitle": "Interested in a Work?",
-    "ctaDescription": "Original oil paintings exploring the human condition through the eyes of a surgeon and self-taught artist. Inquire about availability or commission a custom piece.",
-    "ctaButton": "Contact via WhatsApp"
-  },
-  "Gallery": {
-    "title": "Gallery",
-    "filterAll": "All",
-    "filterMedium": "Medium",
-    "filterSubject": "Subject",
-    "filterAvailability": "Availability",
-    "filterYear": "Year",
-    "viewGrid": "Grid",
-    "viewList": "List",
-    "noResults": "No artworks found with these filters.",
-    "showingCount": "Showing {count} works"
-  },
-  "Artwork": {
-    "details": "Details",
-    "story": "The Story Behind This Work",
-    "relatedWorks": "Related Works",
-    "faq": "Frequently Asked Questions",
-    "shippingQuestion": "How does shipping work?",
-    "shippingAnswer": "Each artwork is professionally packed with archival materials. Domestic shipping available from Cuenca. International shipping upon request. Includes insurance and tracking.",
-    "framingQuestion": "Does it come framed?",
-    "framingAnswer": "Artworks are delivered unframed to allow for customization. I can recommend professional framers in Cuenca and other cities.",
-    "commissionQuestion": "Do you accept commissions?",
-    "commissionAnswer": "Yes, I accept commissions for portraits, figurative works, and murals. Contact me via WhatsApp to discuss your project.",
-    "returnsQuestion": "What is the return policy?",
-    "returnsAnswer": "Your satisfaction is my priority. If the artwork doesn't meet your expectations upon delivery, contact me within 14 days to arrange a return."
-  },
-  "About": {
-    "title": "About the Artist",
-    "statement": "Artist Statement",
+  "about": {
+    "title": "Two vocations, one gaze",
+    "subtitle": "The story of a surgeon who never stopped painting",
+    "roles": "Surgeon · Artist · Professor",
+    "location": "Cuenca, Ecuador",
+    "statement": "Artist statement",
+    "timeline": "Journey",
     "exhibitions": "Exhibitions",
-    "press": "Press & Publications",
+    "press": "Press",
     "solo": "Solo",
     "group": "Group",
     "fair": "Fair"
   },
-  "Contact": {
-    "title": "Contact",
-    "subtitle": "Acquisitions, commissions, exhibitions, or simply a conversation about art — I'd be delighted to hear from you.",
+  "contact": {
+    "title": "Let's talk",
+    "subtitle": "Every work tells a story. If one resonated with you, I'd love to hear from you.",
     "name": "Name",
     "email": "Email",
     "phone": "Phone (optional)",
     "message": "Message",
-    "send": "Send Message",
-    "orWhatsApp": "Or contact me directly via WhatsApp",
-    "success": "Message sent! I'll get back to you soon.",
-    "error": "There was an error. Please try again."
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent. I'll get back to you soon.",
+    "error": "Something went wrong. Try again or reach me on WhatsApp.",
+    "whatsapp": "Write on WhatsApp",
+    "directContact": "Direct contact"
   },
-  "Footer": {
-    "rights": "All rights reserved",
-    "tagline": "Visual artist, surgeon & cultural manager · Cuenca, Ecuador"
+  "notFound": {
+    "title": "Work not found",
+    "description": "The piece you're looking for isn't in this gallery.",
+    "home": "Back to home"
   },
-  "NotFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for doesn't exist or has been moved.",
-    "backHome": "Return Home"
+  "footer": {
+    "quote": "The hardest thing is learning to graduate as human beings.",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "viewWork": "View work",
+    "backToGallery": "Back to gallery",
+    "loading": "Loading..."
   }
 }

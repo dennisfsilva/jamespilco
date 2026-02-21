@@ -1,54 +1,80 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { NAV_LINKS } from "@/lib/constants";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { LocaleSwitcher } from "./locale-switcher";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+import { galleryEase } from "@/lib/animations";
 
-export function NavMobile() {
-  const t = useTranslations("Navigation");
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+interface NavMobileProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+export function NavMobile({ open, onClose }: NavMobileProps) {
+  const t = useTranslations("nav");
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Menu</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="right" className="w-72">
-        <SheetTitle className="font-heading text-lg font-semibold tracking-wide">
-          James Pilco
-        </SheetTitle>
-        <nav className="mt-8 flex flex-col gap-6">
-          {NAV_LINKS.map((link) => (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[60] bg-void/95 backdrop-blur-sm"
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-gold p-3"
+            aria-label="Close menu"
+          >
+            <X size={28} />
+          </button>
+
+          <nav className="flex flex-col items-center justify-center h-full gap-10">
             <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={cn(
-                "text-lg uppercase tracking-widest transition-colors hover:text-primary",
-                pathname === link.href
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              )}
+              href="/"
+              onClick={onClose}
+              className="font-display text-sm font-bold tracking-[0.25em] text-gold mb-8"
             >
-              {t(link.labelKey)}
+              JAMES PILCO
             </Link>
-          ))}
-        </nav>
-      </SheetContent>
-    </Sheet>
+
+            {NAV_LINKS.map((link, i) => (
+              <motion.div
+                key={link.href}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: 0.1 + i * 0.1,
+                  duration: 0.5,
+                  ease: galleryEase as unknown as number[],
+                }}
+              >
+                <Link
+                  href={link.href}
+                  onClick={onClose}
+                  className="font-display text-2xl font-semibold text-gold hover:text-gold-muted transition-colors"
+                >
+                  {t(link.labelKey)}
+                </Link>
+              </motion.div>
+            ))}
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mt-8"
+            >
+              <LocaleSwitcher />
+            </motion.div>
+          </nav>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

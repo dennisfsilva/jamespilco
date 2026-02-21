@@ -1,55 +1,59 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { useSiteSettings } from "@/lib/site-settings-context";
+import { SITE_CONFIG } from "@/lib/constants";
 import { Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
-  const t = useTranslations("Footer");
-  const { instagram, linkedin } = useSiteSettings();
-  const year = new Date().getFullYear();
+  const t = useTranslations("footer");
 
   return (
-    <footer className="border-t border-border/40 bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
+    <footer className="bg-night border-t border-charcoal/20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-10 md:py-12">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          {/* Left */}
           <div>
-            <Link
-              href="/"
-              className="font-heading text-lg font-semibold tracking-wide"
-            >
-              James Pilco
-            </Link>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {t("tagline")}
+            <p className="font-display text-cream font-bold text-sm tracking-wide">
+              James Pilco Luzuriaga
+            </p>
+            <p className="text-stone text-sm mt-1">{SITE_CONFIG.location}</p>
+          </div>
+
+          {/* Center — the quote (hidden on small screens for cleanliness) */}
+          <div className="hidden md:block text-center max-w-sm">
+            <p className="font-accent italic text-stone/70 text-sm leading-relaxed">
+              &ldquo;{t("quote")}&rdquo;
             </p>
           </div>
 
+          {/* Right — social */}
           <div className="flex items-center gap-4">
             <a
-              href={instagram}
+              href={SITE_CONFIG.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-primary"
+              className="text-stone hover:text-gold transition-colors duration-300"
               aria-label="Instagram"
             >
-              <Instagram className="h-5 w-5" />
+              <Instagram size={18} />
             </a>
             <a
-              href={linkedin}
+              href={SITE_CONFIG.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-primary"
+              className="text-stone hover:text-gold transition-colors duration-300"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-5 w-5" />
+              <Linkedin size={18} />
             </a>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
-          &copy; {year} James Pilco. {t("rights")}.
+        {/* Bottom */}
+        <div className="mt-8 pt-6 border-t border-charcoal/30 text-center md:text-left">
+          <p className="text-ash text-xs">
+            &copy; {new Date().getFullYear()} James Pilco Luzuriaga. {t("rights")}
+          </p>
         </div>
       </div>
     </footer>

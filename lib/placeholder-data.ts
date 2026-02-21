@@ -1,28 +1,5 @@
 import type { Artwork, Category } from "@/types/artwork";
-import type { Artist, Exhibition, PressItem } from "@/types/artist";
-
-// Real artwork images from James Pilco's exhibitions
-const PLACEHOLDER_IMAGES = [
-  "/images/artwork/uda-gallery-3.jpg",  // Girl with watermelon — Inocencia I
-  "/images/artwork/uda-gallery-5.jpg",  // Old man with pigeons — Con el Alma en el Rostro
-  "/images/artwork/uda-gallery-4.jpg",  // Child with hat — Niños del Tomebamba
-  "/images/artwork/uda-gallery-1.jpg",  // Batman kids — El Caballero de Gotham
-  "/images/artwork/youtube-thumb-1.jpg", // Figurative detail — Manos del Cirujano
-  "/images/artwork/uda-gallery-2.jpg",  // Clock/skull medical — Memorias del Cuerpo II
-];
-
-const HERO_IMAGES = [
-  "/images/artwork/uda-gallery-1.jpg",   // Batman kids painting
-  "/images/artwork/uda-gallery-3.jpg",   // Girl with watermelon
-  "/images/artist/mural-unveiling.webp", // Memorias del Cuerpo mural at UDA
-];
-
-const STUDIO_IMAGE = "/images/artist/portrait-bw.jpg";
-
-const PROCESS_IMAGES = [
-  "/images/artist/uda-press.jpg",        // Newspaper: James Pilco with his paintings
-  "/images/artist/mural-unveiling.webp",  // Mural unveiling at UDA
-];
+import type { Exhibition, PressItem } from "@/types/artist";
 
 export const placeholderCategories: Category[] = [
   { _id: "cat-1", title: { es: "Óleo", en: "Oil" }, slug: { current: "oil" }, type: "medium" },
@@ -39,7 +16,7 @@ export const placeholderArtworks: Artwork[] = [
     _type: "artwork",
     title: { es: "Inocencia I", en: "Innocence I" },
     slug: { current: "innocence-i" },
-    images: [{ _key: "img1", _type: "image", asset: { _ref: PLACEHOLDER_IMAGES[0], _type: "reference" } }],
+    images: [{ _key: "img1", _type: "image", asset: { _ref: "/images/artwork/uda-gallery-3.jpg", _type: "reference" } }],
     medium: { es: "Óleo sobre lienzo", en: "Oil on canvas" },
     dimensions: { width: 70, height: 100 },
     aspectRatio: 0.75,
@@ -54,7 +31,7 @@ export const placeholderArtworks: Artwork[] = [
     _type: "artwork",
     title: { es: "Con el Alma en el Rostro", en: "With the Soul in the Face" },
     slug: { current: "with-the-soul-in-the-face" },
-    images: [{ _key: "img1", _type: "image", asset: { _ref: PLACEHOLDER_IMAGES[1], _type: "reference" } }],
+    images: [{ _key: "img1", _type: "image", asset: { _ref: "/images/artwork/uda-gallery-5.jpg", _type: "reference" } }],
     medium: { es: "Óleo sobre lienzo", en: "Oil on canvas" },
     dimensions: { width: 60, height: 90 },
     aspectRatio: 1.33,
@@ -68,7 +45,7 @@ export const placeholderArtworks: Artwork[] = [
     _type: "artwork",
     title: { es: "Niños del Tomebamba", en: "Children of the Tomebamba" },
     slug: { current: "children-of-the-tomebamba" },
-    images: [{ _key: "img1", _type: "image", asset: { _ref: PLACEHOLDER_IMAGES[2], _type: "reference" } }],
+    images: [{ _key: "img1", _type: "image", asset: { _ref: "/images/artwork/uda-gallery-4.jpg", _type: "reference" } }],
     medium: { es: "Óleo sobre lienzo", en: "Oil on canvas" },
     dimensions: { width: 90, height: 120 },
     aspectRatio: 0.75,
@@ -83,7 +60,7 @@ export const placeholderArtworks: Artwork[] = [
     _type: "artwork",
     title: { es: "El Caballero de Gotham", en: "The Knight of Gotham" },
     slug: { current: "the-knight-of-gotham" },
-    images: [{ _key: "img1", _type: "image", asset: { _ref: PLACEHOLDER_IMAGES[3], _type: "reference" } }],
+    images: [{ _key: "img1", _type: "image", asset: { _ref: "/images/artwork/uda-gallery-1.jpg", _type: "reference" } }],
     medium: { es: "Óleo sobre lienzo", en: "Oil on canvas" },
     dimensions: { width: 80, height: 110 },
     aspectRatio: 1.33,
@@ -96,30 +73,16 @@ export const placeholderArtworks: Artwork[] = [
   {
     _id: "art-5",
     _type: "artwork",
-    title: { es: "Manos del Cirujano", en: "The Surgeon's Hands" },
-    slug: { current: "the-surgeons-hands" },
-    images: [{ _key: "img1", _type: "image", asset: { _ref: PLACEHOLDER_IMAGES[4], _type: "reference" } }],
-    medium: { es: "Óleo sobre lienzo", en: "Oil on canvas" },
-    dimensions: { width: 80, height: 110 },
-    aspectRatio: 1.78,
-    year: 2023,
-    availability: "donated",
-    categories: [placeholderCategories[0], placeholderCategories[2], placeholderCategories[4]],
-    featured: true,
-  },
-  {
-    _id: "art-6",
-    _type: "artwork",
     title: { es: "Memorias del Cuerpo II", en: "Memories of the Body II" },
     slug: { current: "memories-of-the-body-ii" },
-    images: [{ _key: "img1", _type: "image", asset: { _ref: PLACEHOLDER_IMAGES[5], _type: "reference" } }],
+    images: [{ _key: "img1", _type: "image", asset: { _ref: "/images/artwork/uda-gallery-2.jpg", _type: "reference" } }],
     medium: { es: "Técnica mixta sobre tabla", en: "Mixed media on board" },
     dimensions: { width: 120, height: 80 },
     aspectRatio: 0.81,
     year: 2024,
     availability: "nfs",
     categories: [placeholderCategories[1], placeholderCategories[4]],
-    featured: false,
+    featured: true,
   },
 ];
 
@@ -145,8 +108,5 @@ export const placeholderArtist = {
   statementEn: "Art is the most important form of human expression — through it, we can awaken awareness and offer a more humane perspective of the world. I have painted since the age of four, self-taught, with no artistic heritage in my family, and I believe people deserve art that speaks to them directly. It is the artist's responsibility never to underestimate the viewer. My work is born where medicine meets the canvas: the same curiosity that drives me to understand the human body compels me to capture the innocence of children, the complexity of the human condition, and the stories that inhabit every face.",
   bioEs: "Nacido en Cuenca, Ecuador, James Pilco Luzuriaga ha vivido entre dos vocaciones desde los cuatro años: la medicina y el arte. Formado en doce años de educación jesuita, obtuvo su título de Doctor en Medicina y Cirugía en la Universidad de Cuenca y se especializó en Cirugía Digestiva, Endoscopia Intervencionista y Cirugía Laparoscópica Avanzada en la UNAM de Ciudad de México — donde financió sus estudios de especialidad a través de la venta de su propia obra. Realizó su primera exposición individual a los 17 años en la Galería del Banco del Pacífico y desde entonces ha expuesto en Ecuador, México y Estados Unidos, incluyendo el Museo Mural Diego Rivera en Ciudad de México. Posee una Maestría en Bioética de la Universidad del Azuay, donde es profesor fundador de la Facultad de Medicina. Es autor de libros sobre cirugía, arte y poesía, y ha creado murales permanentes en dicha universidad.",
   bioEn: "Born in Cuenca, Ecuador, James Pilco Luzuriaga has lived between two vocations since the age of four: medicine and art. Shaped by twelve years of Jesuit education, he earned his Doctor of Medicine and Surgery degree from the Universidad de Cuenca and specialized in Digestive Surgery, Interventional Endoscopy, and Advanced Laparoscopic Surgery at UNAM in Mexico City — where he funded his surgical training through the sale of his own artwork. He held his first solo exhibition at 17 at the Galería del Banco del Pacífico and has since exhibited in Ecuador, Mexico, and the United States, including at the Museo Mural Diego Rivera in Mexico City. He holds a Master's in Bioethics from the Universidad del Azuay, where he is a founding professor of the Faculty of Medicine. He is the author of books on surgery, art, and poetry, and has created permanent murals at the university.",
-  portrait: STUDIO_IMAGE,
+  portrait: "/images/artist/portrait-bw.jpg",
 };
-
-export const placeholderHeroImages = HERO_IMAGES;
-export const placeholderProcessImages = PROCESS_IMAGES;

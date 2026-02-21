@@ -1,9 +1,15 @@
-export { metadata, viewport } from "next-sanity/studio";
+export const metadata = {
+  title: "Sanity Studio — James Pilco",
+};
 
 export default function StudioLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <html lang="en">
+      <body style={{ margin: 0 }}>{children}</body>
+    </html>
+  );
 }
