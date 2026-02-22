@@ -4,6 +4,7 @@ import { BioNarrative } from "@/components/about/bio-narrative";
 import { ArtistStatement } from "@/components/about/artist-statement";
 import { ArtistEssay } from "@/components/about/artist-essay";
 import { Timeline } from "@/components/about/timeline";
+import { MilestonePhotos } from "@/components/about/milestone-photos";
 import { ExhibitionsList } from "@/components/about/exhibitions-list";
 import { PressList } from "@/components/about/press-list";
 
@@ -23,6 +24,7 @@ export default function AboutPage() {
       <ArtistStatement />
       <ArtistEssay />
       <Timeline />
+      <MilestonePhotos />
       <ExhibitionsList />
       <PressList />
     </>

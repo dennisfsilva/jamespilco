@@ -67,7 +67,15 @@
     "group": "Colectiva",
     "fair": "Feria",
     "pullQuote": "Si yo no pintara, no podría ver en otros lados el ser humano.",
-    "essay": "La Edad de James"
+    "essay": "La Edad de James",
+    "milestones": {
+      "muralAlt": "James Pilco presentando el mural Memorias del Cuerpo en la Universidad del Azuay",
+      "muralTitle": "Develamiento de \"Memorias del Cuerpo\", 2024",
+      "muralCaption": "Universidad del Azuay, Cuenca — mural permanente en el Museo de Medicina",
+      "pressAlt": "Artículo de prensa: James Pilco combina la medicina con el arte",
+      "pressTitle": "\"James Pilco combina la medicina con el arte\"",
+      "pressCaption": "Prensa de la Universidad del Azuay"
+    }
   },
   "contact": {
     "title": "Conversemos",

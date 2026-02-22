@@ -67,7 +67,15 @@
     "group": "Group",
     "fair": "Fair",
     "pullQuote": "If I didn't paint, I couldn't see the human being from other sides.",
-    "essay": "The Age of James"
+    "essay": "The Age of James",
+    "milestones": {
+      "muralAlt": "James Pilco presenting the Memories of the Body mural at the Universidad del Azuay",
+      "muralTitle": "Unveiling of \"Memories of the Body\", 2024",
+      "muralCaption": "Universidad del Azuay, Cuenca — permanent mural at the Museum of Medicine",
+      "pressAlt": "Press article: James Pilco combines medicine with art",
+      "pressTitle": "\"James Pilco combines medicine with art\"",
+      "pressCaption": "Universidad del Azuay press"
+    }
   },
   "contact": {
     "title": "Let's talk",

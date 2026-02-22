@@ -4,8 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { placeholderArtist } from "@/lib/placeholder-data";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 export function PortraitHero() {
   const t = useTranslations("about");
@@ -25,7 +24,7 @@ export function PortraitHero() {
           className="relative aspect-[3/4] max-h-[65vh] rounded-sm overflow-hidden"
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease }}
+          transition={{ duration: 1.2, ease: galleryEase }}
         >
           <Image
             src={placeholderArtist.portrait}
@@ -48,7 +47,7 @@ export function PortraitHero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7, ease }}
+          transition={{ delay: 0.3, duration: 0.7, ease: galleryEase }}
         >
           <h1 className="font-display font-black text-cream text-4xl md:text-5xl lg:text-6xl leading-tight">
             {placeholderArtist.name.replace("Dr. ", "")}

@@ -141,4 +141,8 @@ export const placeholderArtist = {
     en: "It is the age of those born in the year 65, it is a simple era, without many ties, it is not a sad catalogue nor about sad cities and sad paintings, of someone from Cuenca, who has not lost the idealizing sentiment for his land, and I declare myself proudly morlaco, of coat and jacket, with a childhood that lives in our memory, or rather in our own memory, and at the age when all we have left is the truth in our heads, that truth that deteriorates over time.\n\nThe age of James, is an ordinary age, in which one lived with grandparents, uncles, cousins, friends, with the only certainty that when the day ended the call of dusk was our cellphone, everything was extraordinary, climbing onto the back of the bus, a kind of heroic act of complicity, as if that mischief would change the course already traced, the marbles we tried to keep inside a circle.\n\nAfter all one tries to live with convictions, or at least I intend to keep doing so paint my best painting when I am close to leaving this planet, nor do I intend to live being a burden, if one abandons convictions nothing remains, in these paintings I always try to imagine what is seen, any small event even the most common and insignificant, can be extraordinary for a lifetime. In some paintings I portray seemingly transitory events like vaccination, that student torture, but there are the memories of the coming old age where I intend to tell myself or show that I have not let myself be contaminated.",
   },
   portrait: "/images/artist/portrait-bw.jpg",
+  studioPhotos: [
+    "/images/artist/mural-unveiling.webp",
+    "/images/artist/uda-press.jpg",
+  ],
 };
