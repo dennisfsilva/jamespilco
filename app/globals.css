@@ -1,39 +1,24 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @theme inline {
-  /* ─── Void Gallery Palette ─── */
   --color-void: oklch(0.08 0.01 60);
   --color-night: oklch(0.13 0.01 55);
-  --color-charcoal: oklch(0.22 0.015 50);
-  --color-ash: oklch(0.45 0.01 60);
-  --color-stone: oklch(0.63 0.015 70);
+  --color-charcoal: oklch(0.24 0.015 55);
+  --color-ash: oklch(0.52 0.01 60);
+  --color-stone: oklch(0.65 0.015 70);
   --color-parchment: oklch(0.85 0.02 85);
   --color-cream: oklch(0.95 0.015 90);
 
-  --color-gold: oklch(0.75 0.14 85);
-  --color-gold-muted: oklch(0.60 0.10 85);
+  --color-gold: oklch(0.78 0.15 85);
+  --color-gold-muted: oklch(0.62 0.11 85);
   --color-sienna: oklch(0.55 0.13 50);
-  --color-blood: oklch(0.45 0.16 25);
+  --color-blood: oklch(0.48 0.16 25);
   --color-whatsapp: oklch(0.62 0.18 155);
 
-  /* ─── Typography ─── */
   --font-display: var(--font-playfair), "Georgia", serif;
   --font-body: var(--font-source-sans), "Helvetica Neue", sans-serif;
   --font-accent: var(--font-cormorant), "Georgia", serif;
-
-  /* ─── Gallery Easing ─── */
-  --ease-gallery: cubic-bezier(0.22, 1, 0.36, 1);
-
-  /* ─── Spacing ─── */
-  --spacing-section: 6rem;
-  --spacing-section-lg: 8rem;
-
-  /* ─── Animation speeds ─── */
-  --animate-duration: 0.8s;
 }
-
-/* ─── Base Styles ─── */
 
 *,
 *::before,
@@ -55,107 +40,67 @@ body {
 }
 
 ::selection {
-  background-color: oklch(0.75 0.14 85 / 0.3);
+  background-color: oklch(0.78 0.15 85 / 0.3);
   color: var(--color-cream);
 }
 
-/* ─── Scrollbar ─── */
+/* Global focus-visible fallback — gold ring on keyboard focus */
+:focus-visible {
+  outline: 1px solid oklch(0.78 0.15 85 / 0.5);
+  outline-offset: 2px;
+}
 
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--color-void);
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--color-charcoal);
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-gold-muted);
 }
 
-/* ─── Film Grain Noise ─── */
-
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
-}
-
-/* ─── Ken Burns ─── */
-
-@keyframes ken-burns {
-  0% { transform: scale(1.08); }
-  100% { transform: scale(1.0); }
-}
-
-@keyframes ken-burns-slow {
-  0% { transform: scale(1.05); }
-  100% { transform: scale(1.0); }
-}
-
-/* ─── Pulse Ring (WhatsApp FAB) ─── */
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
-
-/* ─── Scroll Indicator ─── */
-
+/* Scroll indicator breathing */
 @keyframes scroll-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+  0%, 100% { opacity: 0.2; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.1); }
 }
 
-/* ─── Typewriter Cursor ─── */
+/* Ken Burns — slow cinematic zoom on hero painting */
+@keyframes ken-burns {
+  0%   { transform: scale(1.08); }
+  100% { transform: scale(1.0); }
+}
 
+/* Film grain — animates background-position (NOT transform, which bounces the container) */
+@keyframes grain-shift {
+  0%   { background-position: 0 0; }
+  10%  { background-position: -5% -10%; }
+  20%  { background-position: 15% 5%; }
+  30%  { background-position: -3% 12%; }
+  40%  { background-position: 10% -8%; }
+  50%  { background-position: -8% 6%; }
+  60%  { background-position: 5% -12%; }
+  70%  { background-position: -12% 3%; }
+  80%  { background-position: 3% 10%; }
+  90%  { background-position: -6% -5%; }
+  100% { background-position: 0 0; }
+}
+
+/* WhatsApp pulse ring */
+@keyframes whatsapp-ring {
+  0%   { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Blinking cursor for typewriter */
 @keyframes blink-cursor {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-/* ─── Subtle Float ─── */
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-/* ─── Utility Classes ─── */
-
-.vignette {
-  position: relative;
-}
-
-.vignette::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
-  z-index: 2;
-}
-
-.spotlight {
-  background: radial-gradient(circle, oklch(0.20 0.04 70) 0%, transparent 70%);
 }
 
 .gold-line {
@@ -163,7 +108,6 @@ body {
   background: linear-gradient(to right, transparent, var(--color-gold), transparent);
 }
 
-/* Hide scrollbar utility */
 .scrollbar-none {
   scrollbar-width: none;
 }
@@ -171,43 +115,34 @@ body {
   display: none;
 }
 
-/* Masonry layout */
 .masonry {
   columns: 1;
   column-gap: 1.5rem;
 }
-
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .masonry {
     columns: 2;
   }
 }
-
 @media (min-width: 1024px) {
   .masonry {
     columns: 3;
   }
 }
-
 .masonry > * {
   break-inside: avoid;
   margin-bottom: 1.5rem;
 }
 
-/* Lenis smooth scroll */
-html.lenis,
-html.lenis body {
-  height: auto;
+/* Spotlight warm glow behind artwork images */
+.spotlight {
+  position: relative;
 }
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse at center, oklch(0.25 0.06 75 / 0.5) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
 }

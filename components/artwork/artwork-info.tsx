@@ -1,20 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import type { Artwork } from "@/types/artwork";
-import { getLocalizedText, formatPrice, formatDimensions } from "@/lib/locale-text";
-import { fadeInUp, staggerContainer, galleryEase } from "@/lib/animations";
+import { getLocalizedText, formatPrice } from "@/lib/locale-text";
 import { SITE_CONFIG } from "@/lib/constants";
-import { MessageCircle, Mail, Share2, ShieldCheck } from "lucide-react";
+import { MessageCircle, Mail, Share2, Check } from "lucide-react";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function ArtworkInfo({ artwork }: { artwork: Artwork }) {
   const t = useTranslations("artwork");
   const locale = useLocale();
+  const [copied, setCopied] = useState(false);
 
   const title = getLocalizedText(artwork.title, locale);
-  const medium = getLocalizedText(artwork.medium, locale);
-  const dimensions = formatDimensions(artwork.dimensions);
 
   const whatsappMessage = encodeURIComponent(
     `Hola James, me interesa la obra "${title}" (${artwork.year}).`
@@ -26,114 +27,115 @@ export function ArtworkInfo({ artwork }: { artwork: Artwork }) {
   const handleShare = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch {
-      // silent fail
+      // clipboard not available
     }
   };
 
   return (
-    <section className="bg-night border-t border-charcoal">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 lg:gap-16">
-          {/* Left — description placeholder */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="font-accent text-cream text-lg leading-relaxed">
-              {locale === "en"
-                ? `"${title}" is a work that captures the essence of James Pilco's artistic vision — the intersection of medical precision and emotional depth. Through careful brushwork and a mastery of color, Pilco reveals the stories hidden within every face, every gesture, every moment of human experience.`
-                : `"${title}" es una obra que captura la esencia de la visión artística de James Pilco — la intersección entre la precisión médica y la profundidad emocional. A través de pinceladas cuidadosas y un dominio del color, Pilco revela las historias ocultas en cada rostro, cada gesto, cada momento de la experiencia humana.`}
-            </p>
-          </motion.div>
+    <section
+      className="relative"
+      style={{
+        background: "linear-gradient(180deg, transparent 0%, oklch(0.12 0.015 55) 8%, oklch(0.13 0.015 55) 50%, oklch(0.12 0.015 55) 92%, transparent 100%)"
+      }}
+    >
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-14 md:py-20">
+        {/* Story section */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <p className="font-body font-semibold text-gold text-xs tracking-[0.2em] uppercase mb-6">
+            {t("aboutWork")}
+          </p>
+          <p className="font-accent text-cream/90 text-lg md:text-xl leading-relaxed">
+            {artwork.shortDescription
+              ? getLocalizedText(artwork.shortDescription, locale)
+              : locale === "en"
+                ? `"${title}" reveals the stories hidden within every face, every gesture, where the surgeon's precision meets the artist's tenderness.`
+                : `"${title}" revela las historias ocultas en cada rostro, cada gesto, donde la precisión del cirujano se encuentra con la ternura del artista.`}
+          </p>
+        </motion.div>
 
-          {/* Right — acquisition panel (sticky) */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="lg:sticky lg:top-24 lg:self-start space-y-6"
-          >
-            {/* Title */}
-            <motion.h1
-              variants={fadeInUp}
-              className="font-display font-bold text-cream text-3xl"
-            >
-              {title}
-            </motion.h1>
+        {/* Separator */}
+        <div className="gold-line max-w-[60px] mx-auto my-10 md:my-14" />
 
-            {/* Metadata */}
-            <motion.p variants={fadeInUp} className="text-stone font-body text-sm">
-              {medium} {dimensions && `· ${dimensions}`} · {artwork.year}
-            </motion.p>
+        {/* Acquisition section */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1, duration: 0.5, ease }}
+          className="mx-auto max-w-lg text-center"
+        >
+          {/* Price / Status */}
+          <div className="py-4 border-y border-charcoal/40 mb-6">
+            {artwork.availability === "available" && artwork.price ? (
+              <div>
+                <p className="text-gold font-body font-bold text-2xl">
+                  {formatPrice(artwork.price)}
+                </p>
+                <p className="text-sienna text-sm mt-1">{t("available")}</p>
+              </div>
+            ) : artwork.availability === "sold" ? (
+              <div>
+                <p className="text-blood font-body font-bold text-lg uppercase tracking-wider">
+                  {t("sold")}
+                </p>
+                <p className="text-stone text-sm mt-1 italic">{t("soldNote")}</p>
+              </div>
+            ) : artwork.availability === "reserved" ? (
+              <p className="text-gold-muted font-body font-semibold">{t("reserved")}</p>
+            ) : artwork.availability === "donated" ? (
+              <p className="text-stone font-body italic">{t("donated")}</p>
+            ) : (
+              <p className="text-stone font-body italic">{t("nfs")}</p>
+            )}
+          </div>
 
-            {/* Price / Status */}
-            <motion.div variants={fadeInUp} className="py-4 border-y border-charcoal/50">
-              {artwork.availability === "available" && artwork.price ? (
-                <div>
-                  <p className="text-gold font-body font-bold text-2xl">
-                    {formatPrice(artwork.price)}
-                  </p>
-                  <p className="text-sienna text-sm mt-1">{t("available")}</p>
-                </div>
-              ) : artwork.availability === "sold" ? (
-                <div>
-                  <p className="text-blood font-body font-bold text-lg uppercase tracking-wider">
-                    {t("sold")}
-                  </p>
-                  <p className="text-stone text-sm mt-1 italic">{t("soldNote")}</p>
-                </div>
-              ) : artwork.availability === "reserved" ? (
-                <p className="text-gold-muted font-body font-semibold">{t("reserved")}</p>
-              ) : artwork.availability === "donated" ? (
-                <p className="text-stone font-body italic">{t("donated")}</p>
-              ) : (
-                <p className="text-stone font-body italic">{t("nfs")}</p>
-              )}
-            </motion.div>
-
-            {/* WhatsApp CTA */}
-            <motion.a
-              variants={fadeInUp}
+          {/* Action buttons — WhatsApp + Email side by side */}
+          <div className="flex gap-3">
+            <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3.5 bg-gold text-void font-body font-semibold text-sm rounded-sm hover:bg-gold-muted transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 py-3 bg-gold text-void font-body font-semibold text-sm rounded-sm hover:bg-gold-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
             >
-              <MessageCircle size={18} />
+              <MessageCircle size={16} />
               {t("inquire")}
-            </motion.a>
-
-            {/* Secondary actions */}
-            <motion.div variants={fadeInUp} className="flex gap-3">
-              <a
-                href={emailUrl}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 border border-charcoal text-stone hover:text-gold hover:border-gold font-body text-sm rounded-sm transition-colors"
-              >
-                <Mail size={16} />
-                {t("email")}
-              </a>
-              <button
-                onClick={handleShare}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 border border-charcoal text-stone hover:text-gold hover:border-gold font-body text-sm rounded-sm transition-colors"
-              >
-                <Share2 size={16} />
-              </button>
-            </motion.div>
-
-            {/* Trust signals */}
-            <motion.div
-              variants={fadeInUp}
-              className="flex items-center gap-2 text-ash text-xs font-body pt-2"
+            </a>
+            <a
+              href={emailUrl}
+              className="flex-1 flex items-center justify-center gap-2 py-3 border border-charcoal/50 text-stone hover:text-gold hover:border-gold/50 font-body text-sm rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50"
             >
-              <ShieldCheck size={14} />
-              <span>{t("trust")}</span>
-            </motion.div>
-          </motion.div>
-        </div>
+              <Mail size={16} />
+              {t("email")}
+            </a>
+          </div>
+
+          {/* Share — smaller row */}
+          <div className="flex justify-center mt-3">
+            <button
+              onClick={handleShare}
+              className="inline-flex items-center gap-2 px-4 py-2.5 border border-charcoal/50 text-stone hover:text-gold hover:border-gold/50 font-body text-xs rounded-sm transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50"
+            >
+              {copied ? <Check size={14} className="text-gold" /> : <Share2 size={14} />}
+            </button>
+          </div>
+
+          {/* Trust — flowing text, not bullet checklist */}
+          <p className="font-accent italic text-stone text-xs leading-relaxed mt-6 max-w-md mx-auto">
+            {t("trustOriginal")}. {t("trustDirect")}.
+          </p>
+          <p className="font-accent italic text-stone text-xs leading-relaxed mt-2 max-w-md mx-auto">
+            {t("trustNote")}
+          </p>
+        </motion.div>
       </div>
     </section>
   );

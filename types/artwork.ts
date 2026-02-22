@@ -39,6 +39,7 @@ export interface Artwork {
   price?: number;
   availability: "available" | "sold" | "reserved" | "nfs" | "donated";
   description?: LocalizedBlock;
+  shortDescription?: LocalizedString;
   categories?: Category[];
   featured: boolean;
   order?: number;

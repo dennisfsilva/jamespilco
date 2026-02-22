@@ -6,10 +6,9 @@ import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import type { Artwork } from "@/types/artwork";
 import { resolveImageUrl } from "@/sanity/lib/image";
-import { getLocalizedText, formatPrice } from "@/lib/locale-text";
-import { ArrowUpRight } from "lucide-react";
+import { getLocalizedText } from "@/lib/locale-text";
 
-const ease = [0.22, 1, 0.36, 1];
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function ArtworkCard({ artwork, index = 0 }: { artwork: Artwork; index?: number }) {
   const locale = useLocale();
@@ -21,53 +20,45 @@ export function ArtworkCard({ artwork, index = 0 }: { artwork: Artwork; index?: 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ delay: Math.min(index * 0.06, 0.3), duration: 0.5, ease }}
+      transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.5, ease }}
     >
       <Link
         href={`/artwork/${artwork.slug.current}`}
-        className="group block"
+        className="group block focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm"
       >
-        <div className="relative rounded-sm overflow-hidden">
+        {/* Image with subtle hover */}
+        <div className="relative rounded-sm overflow-hidden border border-transparent group-hover:border-gold/30 transition-all duration-500 group-hover:-translate-y-0.5">
           <Image
             src={imageUrl}
             alt={title}
             width={600}
             height={800}
-            className="w-full h-auto transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
+            className="w-full h-auto brightness-[0.93] transition-all duration-700 ease-out group-hover:brightness-100 group-hover:scale-[1.02]"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
+        </div>
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-void/80 via-void/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-          {/* Hover content */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
-            <h3 className="font-display font-semibold text-cream text-sm leading-snug">
-              {title}
-            </h3>
-            <p className="text-stone/80 text-xs font-body mt-1">
-              {medium} · {artwork.year}
+        {/* Museum label — always visible */}
+        <div className="mt-3 px-0.5">
+          <h3 className="font-display font-bold text-cream text-sm leading-snug group-hover:text-gold transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-stone text-xs font-body mt-1">
+            {medium} · {artwork.year}
+          </p>
+          {artwork.availability === "sold" && (
+            <p className="text-blood/80 text-xs font-body uppercase tracking-wider mt-1">
+              {t("sold")}
             </p>
-            <div className="mt-2 flex items-center justify-between">
-              {artwork.availability === "available" && artwork.price ? (
-                <span className="text-gold font-body font-semibold text-sm">
-                  {formatPrice(artwork.price)}
-                </span>
-              ) : artwork.availability === "sold" ? (
-                <span className="text-blood font-body font-semibold text-[11px] uppercase tracking-wider">
-                  {t("sold")}
-                </span>
-              ) : (
-                <span className="text-stone font-body text-[11px] italic">
-                  {t("nfs")}
-                </span>
-              )}
-              <ArrowUpRight size={14} className="text-gold/70" />
-            </div>
-          </div>
+          )}
+          {artwork.availability === "nfs" && (
+            <p className="text-stone text-xs font-body italic mt-1">
+              {t("nfs")}
+            </p>
+          )}
         </div>
       </Link>
     </motion.div>

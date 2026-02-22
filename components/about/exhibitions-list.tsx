@@ -5,15 +5,20 @@ import { motion } from "framer-motion";
 import { placeholderExhibitions } from "@/lib/placeholder-data";
 import { getLocalizedText } from "@/lib/locale-text";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { GALLERY_SPACING } from "@/lib/constants";
 
 export function ExhibitionsList() {
   const t = useTranslations("about");
   const locale = useLocale();
 
   return (
-    <section className={`bg-void ${GALLERY_SPACING.sectionSm}`}>
-      <div className={GALLERY_SPACING.container}>
+    <section
+      className="relative py-14 md:py-20"
+      style={{
+        background: "linear-gradient(180deg, transparent 0%, oklch(0.10 0.01 60) 20%, oklch(0.10 0.01 60) 80%, transparent 100%)"
+      }}
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="gold-line max-w-[60px] mb-10" />
         <motion.p
           variants={fadeInUp}
           initial="hidden"
@@ -47,10 +52,8 @@ export function ExhibitionsList() {
                 {ex.venue}, {ex.location}
               </span>
               <span
-                className={`text-xs font-body uppercase tracking-wider px-2 py-1 rounded-sm border ${
-                  ex.type === "solo"
-                    ? "border-gold/40 text-gold"
-                    : "border-charcoal text-stone"
+                className={`text-xs font-body uppercase tracking-wider ${
+                  ex.type === "solo" ? "text-gold" : "text-stone"
                 }`}
               >
                 {t(ex.type)}

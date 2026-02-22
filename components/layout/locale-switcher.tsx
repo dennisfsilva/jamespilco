@@ -9,20 +9,38 @@ export function LocaleSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const switchTo = locale === "es" ? "en" : "es";
+  const switchTo = (target: "es" | "en") => {
+    if (target === locale) return;
+    router.replace(pathname, { locale: target });
+  };
 
   return (
-    <button
-      onClick={() => router.replace(pathname, { locale: switchTo })}
-      className="text-sm font-body flex items-center gap-1.5"
-    >
-      <span className={cn(locale === "es" ? "text-gold" : "text-stone hover:text-gold transition-colors")}>
+    <div className="text-sm font-body flex items-center gap-0.5">
+      <button
+        onClick={() => switchTo("es")}
+        disabled={locale === "es"}
+        className={cn(
+          "transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm px-2 py-1.5 min-h-[44px] min-w-[44px] flex items-center justify-center",
+          locale === "es"
+            ? "text-gold cursor-default"
+            : "text-stone hover:text-gold"
+        )}
+      >
         ES
-      </span>
-      <span className="text-ash">/</span>
-      <span className={cn(locale === "en" ? "text-gold" : "text-stone hover:text-gold transition-colors")}>
+      </button>
+      <span className="text-charcoal">/</span>
+      <button
+        onClick={() => switchTo("en")}
+        disabled={locale === "en"}
+        className={cn(
+          "transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm px-2 py-1.5 min-h-[44px] min-w-[44px] flex items-center justify-center",
+          locale === "en"
+            ? "text-gold cursor-default"
+            : "text-stone hover:text-gold"
+        )}
+      >
         EN
-      </span>
-    </button>
+      </button>
+    </div>
   );
 }

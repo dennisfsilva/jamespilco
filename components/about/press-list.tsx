@@ -4,15 +4,15 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { placeholderPress } from "@/lib/placeholder-data";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { GALLERY_SPACING } from "@/lib/constants";
 import { ArrowUpRight } from "lucide-react";
 
 export function PressList() {
   const t = useTranslations("about");
 
   return (
-    <section className={`bg-void ${GALLERY_SPACING.sectionSm}`}>
-      <div className={GALLERY_SPACING.container}>
+    <section className="relative py-14 md:py-20" style={{ background: "linear-gradient(to bottom, var(--color-void) 0%, var(--color-night) 100%)" }}>
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="gold-line max-w-[60px] mb-10" />
         <motion.p
           variants={fadeInUp}
           initial="hidden"

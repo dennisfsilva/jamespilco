@@ -1,81 +1,90 @@
 {
   "nav": {
     "gallery": "Gallery",
-    "about": "About",
+    "about": "The Artist",
     "contact": "Contact"
   },
   "home": {
     "hero": {
       "name": "JAMES PILCO LUZURIAGA",
-      "title": "Where medicine\nmeets the canvas",
-      "subtitle": "Surgeon · Artist · Professor · Cuenca, Ecuador"
+      "title": "If I didn't paint,\nI couldn't truly see the human being",
+      "subtitle": "Surgeon · Artist · Cuenca, Ecuador"
     },
     "duality": {
-      "label": "The artist",
-      "highlight1": "the most important form of human expression",
-      "highlight2": "where medicine meets the canvas",
-      "highlight3": "the stories that inhabit every face"
+      "label": "Dual learning"
     },
     "featured": {
-      "label": "FEATURED WORKS",
+      "label": "SELECTED WORKS",
       "viewWork": "View work",
-      "viewAll": "View full collection"
+      "viewAll": "Explore the full collection"
     },
     "quote": "The hardest thing is learning to graduate as human beings.",
     "quoteAttribution": "— James Pilco Luzuriaga",
     "quoteTranslation": "\"Lo más difícil es aprender a graduarse de seres humanos.\"",
     "cta": {
-      "title": "Every work tells a story.\nWhat will yours be?",
-      "gallery": "Explore gallery",
-      "whatsapp": "Let's talk on WhatsApp"
+      "title": "Behind every work\nstands a human being.",
+      "subtitle": "If something resonated, let's talk.",
+      "gallery": "Explore the gallery",
+      "whatsapp": "Write me on WhatsApp"
     }
   },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "Each canvas holds a fragment of the human",
+    "subtitle": "Every face holds a story that deserves to be told",
     "filterAll": "All",
-    "noResults": "No works found with these filters."
+    "noResults": "No works found with this filter."
   },
   "artwork": {
-    "available": "Available",
+    "available": "Available for acquisition",
     "sold": "Sold",
-    "soldNote": "This work found its home",
-    "nfs": "Private collection",
+    "soldNote": "This work found someone to listen",
+    "nfs": "Artist's collection",
     "reserved": "Reserved",
     "donated": "Donated",
     "inquire": "Inquire about this work",
-    "trust": "Original work · Certificate of authenticity · Shipping available",
-    "related": "Works you might love",
+    "trust": "Original work · Certificate of authenticity · International shipping",
+    "trustLabel": "Collecting James Pilco",
+    "trustOriginal": "Original work with signed certificate of authenticity",
+    "trustDirect": "Direct from the artist, no gallery commission",
+    "trustShipping": "International shipping with insurance available",
+    "trustNote": "For acquisitions or questions, reach out directly. James responds personally.",
+    "related": "Other voices from the same silence",
     "zoom": "Zoom image",
     "share": "Share",
-    "email": "Inquire by email"
+    "email": "Write by email",
+    "aboutWork": "About this work"
   },
   "about": {
     "title": "Two vocations, one gaze",
-    "subtitle": "The story of a surgeon who never stopped painting",
+    "subtitle": "«He who is only a doctor is a poor doctor»",
     "roles": "Surgeon · Artist · Professor",
     "location": "Cuenca, Ecuador",
-    "statement": "Artist statement",
-    "timeline": "Journey",
+    "statement": "In his own words",
+    "timeline": "The golden thread",
     "exhibitions": "Exhibitions",
-    "press": "Press",
+    "press": "Press & publications",
     "solo": "Solo",
     "group": "Group",
-    "fair": "Fair"
+    "fair": "Fair",
+    "pullQuote": "If I didn't paint, I couldn't see the human being from other sides.",
+    "essay": "The Age of James"
   },
   "contact": {
     "title": "Let's talk",
-    "subtitle": "Every work tells a story. If one resonated with you, I'd love to hear from you.",
-    "name": "Name",
+    "subtitle": "I'm very open to all expressions and thoughts. If something in my work resonated with you, I'd love to hear from you.",
+    "name": "Your name",
+    "namePlaceholder": "What's your name?",
     "email": "Email",
+    "emailPlaceholder": "you@email.com",
     "phone": "Phone (optional)",
-    "message": "Message",
+    "message": "Your message",
+    "messagePlaceholder": "Tell me which work caught your eye, or if you simply want to talk about art...",
     "send": "Send message",
     "sending": "Sending...",
-    "success": "Message sent. I'll get back to you soon.",
-    "error": "Something went wrong. Try again or reach me on WhatsApp.",
+    "success": "Thank you. I'll respond personally.",
+    "error": "Something went wrong. Write me directly on WhatsApp.",
     "whatsapp": "Write on WhatsApp",
-    "directContact": "Direct contact"
+    "directContact": "Or write me directly"
   },
   "notFound": {
     "title": "Work not found",
@@ -83,8 +92,8 @@
     "home": "Back to home"
   },
   "footer": {
-    "quote": "The hardest thing is learning to graduate as human beings.",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "roles": "Surgeon · Artist · Professor"
   },
   "common": {
     "viewWork": "View work",

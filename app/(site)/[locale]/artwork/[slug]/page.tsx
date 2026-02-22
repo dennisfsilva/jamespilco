@@ -5,7 +5,6 @@ import { getLocalizedText, formatPrice } from "@/lib/locale-text";
 import { ArtworkImmersive } from "@/components/artwork/artwork-immersive";
 import { ArtworkInfo } from "@/components/artwork/artwork-info";
 import { RelatedWorks } from "@/components/artwork/related-works";
-import { FilmGrain } from "@/components/shared/film-grain";
 
 interface ArtworkPageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -19,7 +18,7 @@ export async function generateMetadata({ params }: ArtworkPageProps): Promise<Me
   const title = getLocalizedText(artwork.title, locale);
   return {
     title,
-    description: `${title} — ${getLocalizedText(artwork.medium, locale)}, ${artwork.year}. ${artwork.price ? formatPrice(artwork.price) : ""}`,
+    description: `${title} | ${getLocalizedText(artwork.medium, locale)}, ${artwork.year}. ${artwork.price ? formatPrice(artwork.price) : ""}`,
   };
 }
 
@@ -33,7 +32,6 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
 
   return (
     <>
-      <FilmGrain opacity={0.03} />
       <ArtworkImmersive artwork={artwork} />
       <ArtworkInfo artwork={artwork} />
       <RelatedWorks currentSlug={slug} />

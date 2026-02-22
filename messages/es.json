@@ -1,90 +1,99 @@
 {
   "nav": {
     "gallery": "Galería",
-    "about": "Sobre James",
+    "about": "El Artista",
     "contact": "Contacto"
   },
   "home": {
     "hero": {
       "name": "JAMES PILCO LUZURIAGA",
-      "title": "Donde la medicina\nse encuentra con el lienzo",
-      "subtitle": "Cirujano · Artista · Profesor · Cuenca, Ecuador"
+      "title": "Si no pintara,\nno podría ver al ser humano",
+      "subtitle": "Cirujano · Artista · Cuenca, Ecuador"
     },
     "duality": {
-      "label": "El artista",
-      "highlight1": "la expresión humana más importante",
-      "highlight2": "donde la medicina se encuentra con el lienzo",
-      "highlight3": "las historias que habitan en cada rostro"
+      "label": "Aprendizaje dual"
     },
     "featured": {
-      "label": "OBRA DESTACADA",
+      "label": "OBRAS SELECCIONADAS",
       "viewWork": "Ver obra",
-      "viewAll": "Ver toda la colección"
+      "viewAll": "Explorar toda la obra"
     },
     "quote": "Lo más difícil es aprender a graduarse de seres humanos.",
     "quoteAttribution": "— James Pilco Luzuriaga",
     "quoteTranslation": "\"The hardest thing is learning to graduate as human beings.\"",
     "cta": {
-      "title": "Cada obra cuenta una historia.\n¿Cuál será la tuya?",
-      "gallery": "Explorar galería",
-      "whatsapp": "Conversemos por WhatsApp"
+      "title": "Detrás de cada obra\nhay un ser humano.",
+      "subtitle": "Si algo resonó en ti, conversemos.",
+      "gallery": "Explorar la galería",
+      "whatsapp": "Escribirme por WhatsApp"
     }
   },
   "gallery": {
     "title": "Galería",
-    "subtitle": "Cada lienzo guarda un fragmento de lo humano",
-    "filterAll": "Todo",
-    "noResults": "No se encontraron obras con estos filtros."
+    "subtitle": "Cada rostro guarda una historia que merece ser contada",
+    "filterAll": "Todas",
+    "noResults": "No se encontraron obras con este criterio."
   },
   "artwork": {
-    "available": "Obra disponible",
+    "available": "Disponible para adquisición",
     "sold": "Vendida",
-    "soldNote": "Esta obra encontró su hogar",
-    "nfs": "Colección privada",
+    "soldNote": "Esta obra encontró quien la escuche",
+    "nfs": "Colección del artista",
     "reserved": "Reservada",
     "donated": "Donada",
-    "inquire": "Consultar sobre esta obra",
-    "trust": "Obra original · Certificado de autenticidad · Envío disponible",
-    "related": "Obras que podrían interesarte",
+    "inquire": "Consultar por esta obra",
+    "trust": "Obra original · Certificado de autenticidad · Envío internacional",
+    "trustLabel": "Adquirir obra de James Pilco",
+    "trustOriginal": "Obra original con certificado de autenticidad firmado",
+    "trustDirect": "Directo del artista, sin comisión de galería",
+    "trustShipping": "Envío internacional con seguro disponible",
+    "trustNote": "Para adquisiciones o consultas, escríbeme directamente. Respondo personalmente.",
+    "related": "Otras voces del mismo silencio",
     "zoom": "Ampliar imagen",
     "share": "Compartir",
-    "email": "Consultar por email"
+    "email": "Escribir por email",
+    "aboutWork": "Sobre esta obra"
   },
   "about": {
     "title": "Dos vocaciones, una sola mirada",
-    "subtitle": "La historia de un cirujano que nunca dejó de pintar",
+    "subtitle": "«Quien sólo a médico se dedica, pobre médico es»",
     "roles": "Cirujano · Artista · Profesor",
     "location": "Cuenca, Ecuador",
-    "statement": "Declaración del artista",
-    "timeline": "Trayectoria",
+    "statement": "En sus propias palabras",
+    "timeline": "El hilo dorado",
     "exhibitions": "Exposiciones",
-    "press": "Prensa",
+    "press": "Prensa y publicaciones",
     "solo": "Individual",
     "group": "Colectiva",
-    "fair": "Feria"
+    "fair": "Feria",
+    "pullQuote": "Si yo no pintara, no podría ver en otros lados el ser humano.",
+    "essay": "La Edad de James"
   },
   "contact": {
     "title": "Conversemos",
-    "subtitle": "Cada obra cuenta una historia. Si alguna resonó contigo, me encantaría escucharte.",
-    "name": "Nombre",
+    "subtitle": "Soy muy abierto a todas las expresiones y a los pensamientos. Si algo de mi obra resonó contigo, me encantaría escucharte.",
+    "name": "Tu nombre",
+    "namePlaceholder": "¿Cómo te llamas?",
     "email": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
     "phone": "Teléfono (opcional)",
-    "message": "Mensaje",
+    "message": "Tu mensaje",
+    "messagePlaceholder": "Cuéntame qué obra te llamó la atención, o si simplemente quieres conversar sobre arte...",
     "send": "Enviar mensaje",
     "sending": "Enviando...",
-    "success": "Mensaje enviado. Te responderé pronto.",
-    "error": "Hubo un error. Intenta de nuevo o escríbeme por WhatsApp.",
+    "success": "Gracias. Te responderé personalmente.",
+    "error": "Algo falló. Escríbeme directamente por WhatsApp.",
     "whatsapp": "Escribir por WhatsApp",
-    "directContact": "Contacto directo"
+    "directContact": "O escríbeme directamente"
   },
   "notFound": {
     "title": "Obra no encontrada",
-    "description": "La obra que buscas no está en esta galería.",
+    "description": "La pieza que buscas no está en esta galería.",
     "home": "Volver al inicio"
   },
   "footer": {
-    "quote": "Lo más difícil es aprender a graduarse de seres humanos.",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "roles": "Cirujano · Artista · Profesor"
   },
   "common": {
     "viewWork": "Ver obra",

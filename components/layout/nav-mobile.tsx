@@ -1,12 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 import { LocaleSwitcher } from "./locale-switcher";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { galleryEase } from "@/lib/animations";
+const ease = [0.22, 1, 0.36, 1] as const;
 
 interface NavMobileProps {
   open: boolean;
@@ -15,6 +16,18 @@ interface NavMobileProps {
 
 export function NavMobile({ open, onClose }: NavMobileProps) {
   const t = useTranslations("nav");
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -28,7 +41,7 @@ export function NavMobile({ open, onClose }: NavMobileProps) {
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gold p-3"
+            className="absolute top-4 right-4 text-gold p-3 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm"
             aria-label="Close menu"
           >
             <X size={28} />
@@ -51,13 +64,13 @@ export function NavMobile({ open, onClose }: NavMobileProps) {
                 transition={{
                   delay: 0.1 + i * 0.1,
                   duration: 0.5,
-                  ease: galleryEase as unknown as number[],
+                  ease,
                 }}
               >
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="font-display text-2xl font-semibold text-gold hover:text-gold-muted transition-colors"
+                  className="font-display text-2xl font-semibold text-gold hover:text-gold-muted transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm px-1"
                 >
                   {t(link.labelKey)}
                 </Link>

@@ -22,16 +22,16 @@ export function Navigation() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-40 transition-all duration-500",
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b",
           scrolled
-            ? "bg-void/90 backdrop-blur-lg border-b border-charcoal/30 shadow-[0_1px_20px_rgba(0,0,0,0.3)]"
-            : "bg-transparent"
+            ? "bg-void/90 backdrop-blur-lg border-charcoal/30 shadow-[0_1px_20px_rgba(0,0,0,0.3)]"
+            : "bg-transparent border-transparent"
         )}
       >
         <nav className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <Link
             href="/"
-            className="font-display text-sm font-bold tracking-[0.2em] text-gold hover:text-gold-muted transition-colors duration-300"
+            className="font-display text-sm font-bold tracking-[0.2em] text-gold hover:text-gold-muted transition-colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm"
           >
             JAMES PILCO
           </Link>
@@ -45,7 +45,7 @@ export function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "group relative text-sm font-body transition-colors duration-300 py-1",
+                    "group relative text-sm font-body transition-colors duration-300 py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm",
                     isActive ? "text-gold" : "text-stone hover:text-cream"
                   )}
                 >
@@ -70,7 +70,7 @@ export function Navigation() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(true)}
-            className="md:hidden text-gold p-2 -mr-2"
+            className="md:hidden text-gold p-2 -mr-2 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/50 rounded-sm"
             aria-label="Open menu"
           >
             <Menu size={22} />

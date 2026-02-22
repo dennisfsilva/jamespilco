@@ -1,66 +1,116 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { placeholderArtist } from "@/lib/placeholder-data";
-import { fadeInUp, galleryEase } from "@/lib/animations";
-import { GALLERY_SPACING } from "@/lib/constants";
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+/** Highlights specific phrases in gold within a text string */
+function HighlightedBio({ text, highlights }: { text: string; highlights: string[] }) {
+  let parts: { text: string; highlighted: boolean }[] = [{ text, highlighted: false }];
+
+  for (const phrase of highlights) {
+    const newParts: typeof parts = [];
+    for (const part of parts) {
+      if (part.highlighted) {
+        newParts.push(part);
+        continue;
+      }
+      const idx = part.text.indexOf(phrase);
+      if (idx === -1) {
+        newParts.push(part);
+        continue;
+      }
+      if (idx > 0) newParts.push({ text: part.text.slice(0, idx), highlighted: false });
+      newParts.push({ text: phrase, highlighted: true });
+      if (idx + phrase.length < part.text.length)
+        newParts.push({ text: part.text.slice(idx + phrase.length), highlighted: false });
+    }
+    parts = newParts;
+  }
+
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.highlighted ? (
+          <span key={i} className="text-gold">{part.text}</span>
+        ) : (
+          <span key={i}>{part.text}</span>
+        )
+      )}
+    </>
+  );
+}
 
 export function BioNarrative() {
   const locale = useLocale();
+  const t = useTranslations("about");
   const bio = locale === "en" ? placeholderArtist.bioEn : placeholderArtist.bioEs;
 
-  // Split into paragraphs at sentence boundaries for better layout
+  const highlights =
+    locale === "en"
+      ? [
+          "funded his surgical training by selling his own paintings",
+          "scalpels paid for with brushstrokes",
+          "never stop painting, never stop writing",
+          "founding professor",
+        ]
+      : [
+          "financió su formación quirúrgica vendiendo sus propios cuadros",
+          "los bisturís pagados con pinceles",
+          "nunca dejes de pintar, nunca dejes de escribir",
+          "profesor fundador",
+        ];
+
   const sentences = bio.split(/(?<=\.)\s+/).filter(Boolean);
   const mid = Math.ceil(sentences.length / 2);
   const col1 = sentences.slice(0, mid).join(" ");
   const col2 = sentences.slice(mid).join(" ");
 
-  // Phrases to highlight
-  const highlights =
-    locale === "en"
-      ? [
-          "funded his surgical training through the sale of his own artwork",
-          "founding professor",
-        ]
-      : [
-          "financió sus estudios de especialidad a través de la venta de su propia obra",
-          "profesor fundador",
-        ];
-
-  function highlightText(text: string) {
-    let result = text;
-    for (const phrase of highlights) {
-      result = result.replace(
-        phrase,
-        `<span class="text-gold">${phrase}</span>`
-      );
-    }
-    return result;
-  }
-
   return (
-    <section className={`bg-void ${GALLERY_SPACING.section}`}>
-      <div className={GALLERY_SPACING.container}>
+    <section
+      className="relative py-20 md:py-28"
+      style={{
+        background: "linear-gradient(180deg, transparent 0%, oklch(0.13 0.015 60) 12%, oklch(0.13 0.015 60) 88%, transparent 100%)"
+      }}
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <motion.p
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-accent text-parchment text-lg leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: highlightText(col1) }}
-          />
+            transition={{ duration: 0.5, ease }}
+            className="font-accent text-parchment text-lg leading-[1.8]"
+          >
+            <HighlightedBio text={col1} highlights={highlights} />
+          </motion.p>
           <motion.p
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-            className="font-accent text-parchment text-lg leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: highlightText(col2) }}
-          />
+            transition={{ delay: 0.1, duration: 0.5, ease }}
+            className="font-accent text-parchment text-lg leading-[1.8]"
+          >
+            <HighlightedBio text={col2} highlights={highlights} />
+          </motion.p>
         </div>
+
+        {/* Pull quote */}
+        <motion.blockquote
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6, ease }}
+          className="mt-16 md:mt-20 text-center"
+        >
+          <div className="gold-line max-w-[40px] mx-auto mb-8" />
+          <p className="font-accent italic text-gold text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto">
+            &ldquo;{t("pullQuote")}&rdquo;
+          </p>
+          <div className="gold-line max-w-[40px] mx-auto mt-8" />
+        </motion.blockquote>
       </div>
     </section>
   );

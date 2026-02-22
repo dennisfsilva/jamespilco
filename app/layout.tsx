@@ -27,11 +27,11 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "James Pilco Luzuriaga — Cirujano y Artista Visual",
+    default: "James Pilco Luzuriaga | Cirujano y Artista Visual",
     template: "%s | James Pilco Luzuriaga",
   },
   description:
-    "Arte figurativo original por el Dr. James Pilco Luzuriaga — cirujano, artista visual y profesor en Cuenca, Ecuador. Donde la medicina se encuentra con el lienzo.",
+    "Arte figurativo original por el Dr. James Pilco Luzuriaga, cirujano, artista visual y profesor en Cuenca, Ecuador. Donde la medicina se encuentra con el lienzo.",
   metadataBase: new URL("https://jamespilco.com"),
   openGraph: {
     type: "website",

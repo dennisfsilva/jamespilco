@@ -17,56 +17,52 @@ export function ContactDirect() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="space-y-6"
+      className="text-center"
     >
       <motion.p
         variants={fadeInUp}
-        className="font-body font-semibold text-gold text-xs tracking-[0.3em] uppercase"
+        className="font-body font-semibold text-gold text-xs tracking-[0.3em] uppercase mb-8"
       >
         {t("directContact")}
       </motion.p>
 
-      {/* WhatsApp — primary */}
-      <motion.a
-        variants={fadeInUp}
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 w-full py-4 px-6 bg-whatsapp/90 hover:bg-whatsapp text-white font-body font-semibold rounded-sm transition-colors"
-      >
-        <MessageCircle size={20} />
-        {t("whatsapp")}
-      </motion.a>
+      {/* WhatsApp + Email side by side */}
+      <motion.div variants={fadeInUp} className="flex gap-3 max-w-sm mx-auto">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-gold text-void font-body font-semibold text-sm rounded-sm hover:bg-gold-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+        >
+          <MessageCircle size={16} />
+          {t("whatsapp")}
+        </a>
+        <a
+          href={`mailto:${SITE_CONFIG.email}`}
+          className="flex-1 inline-flex items-center justify-center gap-2 py-3 border border-charcoal/50 text-stone hover:text-gold hover:border-gold/40 font-body text-sm rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+        >
+          <Mail size={16} />
+          {SITE_CONFIG.email}
+        </a>
+      </motion.div>
 
-      {/* Email */}
-      <motion.a
-        variants={fadeInUp}
-        href={`mailto:${SITE_CONFIG.email}`}
-        className="flex items-center gap-3 text-stone hover:text-gold transition-colors font-body text-sm py-3"
-      >
-        <Mail size={18} />
-        {SITE_CONFIG.email}
-      </motion.a>
-
-      {/* Instagram */}
-      <motion.a
-        variants={fadeInUp}
-        href={SITE_CONFIG.instagram}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 text-stone hover:text-gold transition-colors font-body text-sm py-3"
-      >
-        <Instagram size={18} />
-        {SITE_CONFIG.instagramHandle}
-      </motion.a>
-
-      {/* Location */}
-      <motion.div
-        variants={fadeInUp}
-        className="flex items-center gap-3 text-stone font-body text-sm py-3"
-      >
-        <MapPin size={18} />
-        {SITE_CONFIG.location}
+      {/* Instagram + Location */}
+      <motion.div variants={fadeInUp} className="mt-8 space-y-2">
+        <p className="text-stone text-sm font-body">
+          <a
+            href={SITE_CONFIG.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+          >
+            <Instagram size={14} />
+            {SITE_CONFIG.instagramHandle}
+          </a>
+        </p>
+        <p className="text-stone text-sm font-body inline-flex items-center gap-2">
+          <MapPin size={14} />
+          {SITE_CONFIG.location}
+        </p>
       </motion.div>
     </motion.div>
   );

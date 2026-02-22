@@ -27,33 +27,33 @@ export function GalleryFilters() {
     router.replace(`${pathname}${query ? `?${query}` : ""}`, { scroll: false });
   };
 
+  const filters = [
+    { slug: "all", label: t("filterAll") },
+    ...placeholderCategories.map((cat) => ({
+      slug: cat.slug.current,
+      label: getLocalizedText(cat.title, locale),
+    })),
+  ];
+
   return (
-    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
-      <button
-        onClick={() => setFilter("all")}
-        className={cn(
-          "flex-shrink-0 px-4 py-2 rounded-full text-sm font-body transition-all duration-300",
-          activeFilter === "all"
-            ? "bg-gold text-void"
-            : "border border-charcoal text-stone hover:border-gold hover:text-gold"
-        )}
-      >
-        {t("filterAll")}
-      </button>
-      {placeholderCategories.map((cat) => (
-        <button
-          key={cat._id}
-          onClick={() => setFilter(cat.slug.current)}
-          className={cn(
-            "flex-shrink-0 px-4 py-2 rounded-full text-sm font-body transition-all duration-300",
-            activeFilter === cat.slug.current
-              ? "bg-gold text-void"
-              : "border border-charcoal text-stone hover:border-gold hover:text-gold"
-          )}
-        >
-          {getLocalizedText(cat.title, locale)}
-        </button>
-      ))}
+    <div className="flex flex-wrap gap-x-4 gap-y-1">
+      {filters.map((filter) => {
+        const isActive = activeFilter === filter.slug;
+        return (
+          <button
+            key={filter.slug}
+            onClick={() => setFilter(filter.slug)}
+            className={cn(
+              "py-2 text-sm font-body font-semibold transition-all duration-200 cursor-pointer border-b-[1.5px]",
+              isActive
+                ? "text-gold border-gold/60"
+                : "text-stone border-transparent hover:text-cream"
+            )}
+          >
+            {filter.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

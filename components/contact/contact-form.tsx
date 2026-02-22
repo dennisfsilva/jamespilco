@@ -4,7 +4,18 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { Send, Check } from "lucide-react";
+import { Send, Check, Loader2 } from "lucide-react";
+
+function RequiredLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <label className="block text-stone text-sm font-body mb-2">
+      {children} <span className="text-gold">*</span>
+    </label>
+  );
+}
+
+const inputClasses =
+  "w-full bg-night border border-charcoal rounded-sm px-4 py-3 text-cream font-body text-sm placeholder:text-ash/50 focus:border-gold focus:ring-1 focus:ring-gold/20 outline-none transition-colors duration-200";
 
 export function ContactForm() {
   const t = useTranslations("contact");
@@ -44,24 +55,22 @@ export function ContactForm() {
       className="space-y-6"
     >
       <motion.div variants={fadeInUp}>
-        <label className="block text-stone text-sm font-body mb-2">
-          {t("name")} *
-        </label>
+        <RequiredLabel>{t("name")}</RequiredLabel>
         <input
           type="text"
           required
-          className="w-full bg-night border border-charcoal rounded-sm px-4 py-3 text-cream font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/20 outline-none transition-colors"
+          className={inputClasses}
+          placeholder={t("namePlaceholder")}
         />
       </motion.div>
 
       <motion.div variants={fadeInUp}>
-        <label className="block text-stone text-sm font-body mb-2">
-          {t("email")} *
-        </label>
+        <RequiredLabel>{t("email")}</RequiredLabel>
         <input
           type="email"
           required
-          className="w-full bg-night border border-charcoal rounded-sm px-4 py-3 text-cream font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/20 outline-none transition-colors"
+          className={inputClasses}
+          placeholder={t("emailPlaceholder")}
         />
       </motion.div>
 
@@ -71,28 +80,31 @@ export function ContactForm() {
         </label>
         <input
           type="tel"
-          className="w-full bg-night border border-charcoal rounded-sm px-4 py-3 text-cream font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/20 outline-none transition-colors"
+          className={inputClasses}
         />
       </motion.div>
 
       <motion.div variants={fadeInUp}>
-        <label className="block text-stone text-sm font-body mb-2">
-          {t("message")} *
-        </label>
+        <RequiredLabel>{t("message")}</RequiredLabel>
         <textarea
           required
           rows={5}
-          className="w-full bg-night border border-charcoal rounded-sm px-4 py-3 text-cream font-body text-sm focus:border-gold focus:ring-1 focus:ring-gold/20 outline-none transition-colors resize-none"
+          className={`${inputClasses} resize-none`}
+          placeholder={t("messagePlaceholder")}
         />
       </motion.div>
 
-      <motion.div variants={fadeInUp}>
+      <motion.div variants={fadeInUp} className="text-center">
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-void font-body font-semibold text-sm rounded-sm hover:bg-gold-muted transition-colors disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-void font-body font-semibold text-sm rounded-sm hover:bg-gold-muted transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void"
         >
-          <Send size={16} />
+          {status === "sending" ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : (
+            <Send size={16} />
+          )}
           {status === "sending" ? t("sending") : t("send")}
         </button>
       </motion.div>

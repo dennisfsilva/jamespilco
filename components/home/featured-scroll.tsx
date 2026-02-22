@@ -7,10 +7,10 @@ import { Link } from "@/i18n/navigation";
 import { placeholderArtworks } from "@/lib/placeholder-data";
 import { resolveImageUrl } from "@/sanity/lib/image";
 import { getLocalizedText, formatPrice } from "@/lib/locale-text";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 
-const ease = [0.22, 1, 0.36, 1];
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function FeaturedScroll() {
   const t = useTranslations("home.featured");
@@ -20,96 +20,82 @@ export function FeaturedScroll() {
 
   const featured = placeholderArtworks.filter((a) => a.featured);
 
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const amount = direction === "left" ? -360 : 360;
-    scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
-  };
-
   return (
-    <section className="bg-void py-20 md:py-28">
+    <section
+      className="relative py-20 md:py-28"
+      style={{
+        background: "linear-gradient(180deg, transparent 0%, oklch(0.11 0.01 60) 15%, oklch(0.11 0.01 60) 85%, transparent 100%)"
+      }}
+    >
+      {/* Ambient wash — warm glow from the exhibition lighting */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 80% 50% at 50% 50%, oklch(0.20 0.04 72 / 0.3), transparent)"
+        }}
+      />
+
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, ease }}
-        className="text-center mb-10"
+        transition={{ duration: 0.6, ease }}
+        className="relative text-center mb-10"
       >
-        <p className="font-body font-semibold text-gold text-[11px] tracking-[0.3em] uppercase">
+        <p className="font-body font-semibold text-gold text-[11px] tracking-[0.35em] uppercase">
           {t("label")}
         </p>
+        <div className="gold-line max-w-[40px] mx-auto mt-4" />
       </motion.div>
 
       {/* Scroll container */}
-      <div className="relative group/scroll">
-        {/* Arrow buttons — only visible on hover of the section */}
-        <button
-          onClick={() => scroll("left")}
-          className="hidden md:flex absolute left-4 top-[35%] z-10 w-10 h-10 rounded-full border border-gold/30 items-center justify-center text-gold/60 hover:text-gold hover:border-gold/60 hover:bg-gold/5 transition-all opacity-0 group-hover/scroll:opacity-100"
-          aria-label="Scroll left"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="hidden md:flex absolute right-4 top-[35%] z-10 w-10 h-10 rounded-full border border-gold/30 items-center justify-center text-gold/60 hover:text-gold hover:border-gold/60 hover:bg-gold/5 transition-all opacity-0 group-hover/scroll:opacity-100"
-          aria-label="Scroll right"
-        >
-          <ChevronRight size={18} />
-        </button>
+      <div
+        ref={scrollRef}
+        className="relative flex gap-6 md:gap-8 overflow-x-auto px-6 sm:px-10 lg:px-20 pb-4 scrollbar-none snap-x snap-mandatory"
+      >
+        {featured.map((artwork, i) => {
+          const imageUrl = resolveImageUrl(artwork.images[0]);
+          const title = getLocalizedText(artwork.title, locale);
+          const medium = getLocalizedText(artwork.medium, locale);
 
-        <div
-          ref={scrollRef}
-          className="flex gap-6 md:gap-8 overflow-x-auto px-5 sm:px-8 lg:px-16 pb-4 scrollbar-none"
-          style={{ scrollbarWidth: "none" }}
-          data-lenis-prevent
-        >
-          {featured.map((artwork, i) => {
-            const imageUrl = resolveImageUrl(artwork.images[0]);
-            const title = getLocalizedText(artwork.title, locale);
-            const medium = getLocalizedText(artwork.medium, locale);
-
-            return (
-              <motion.div
-                key={artwork._id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease }}
-                className="flex-shrink-0 w-[280px] md:w-[340px] group"
-              >
-                <Link href={`/artwork/${artwork.slug.current}`}>
-                  <div className="relative aspect-[3/4] rounded-sm overflow-hidden mb-4">
+          return (
+            <motion.div
+              key={artwork._id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: i * 0.08, duration: 0.6, ease }}
+              className="flex-shrink-0 w-[280px] md:w-[320px] group snap-start"
+            >
+              <Link href={`/artwork/${artwork.slug.current}`}>
+                {/* Card with spotlight glow behind */}
+                <div className="spotlight">
+                  <div className="relative aspect-[3/4] rounded-sm overflow-hidden border border-transparent group-hover:border-gold/20 transition-all duration-500">
                     <Image
                       src={imageUrl}
                       alt={title}
                       fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                      sizes="(max-width: 768px) 280px, 340px"
+                      className="object-cover brightness-[0.93] transition-all duration-700 ease-out group-hover:brightness-100 group-hover:scale-[1.02]"
+                      sizes="(max-width: 768px) 280px, 320px"
                     />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <span className="text-gold text-xs font-body flex items-center gap-1">
-                        {t("viewWork")} <ArrowRight size={12} />
-                      </span>
-                    </div>
                   </div>
+                </div>
 
-                  <h3 className="font-display font-bold text-cream text-base leading-snug">
+                <div className="mt-4">
+                  <h3 className="font-display font-bold text-cream text-sm leading-snug group-hover:text-gold transition-colors duration-300">
                     {title}
                   </h3>
-                  <p className="text-stone text-sm font-body mt-1">
+                  <p className="text-stone text-xs font-body mt-1.5">
                     {medium} · {artwork.year}
                   </p>
                   <div className="mt-1.5">
                     {artwork.availability === "available" && artwork.price ? (
-                      <span className="text-gold font-body font-semibold">
+                      <span className="text-gold font-body font-bold text-sm">
                         {formatPrice(artwork.price)}
                       </span>
                     ) : artwork.availability === "sold" ? (
-                      <span className="text-blood font-body font-semibold text-xs uppercase tracking-wider">
+                      <span className="text-blood font-body font-bold text-xs uppercase tracking-wider">
                         {tArtwork("sold")}
                       </span>
                     ) : (
@@ -118,11 +104,11 @@ export function FeaturedScroll() {
                       </span>
                     )}
                   </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </div>
+                </div>
+              </Link>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* View all link */}
@@ -130,12 +116,12 @@ export function FeaturedScroll() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="text-center mt-10"
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="relative text-center mt-10"
       >
         <Link
           href="/gallery"
-          className="text-gold hover:text-gold-muted font-body text-sm transition-colors inline-flex items-center gap-2"
+          className="text-gold hover:text-cream font-body text-sm transition-colors duration-300 inline-flex items-center gap-2 border-b border-gold/30 pb-0.5 hover:border-gold/60"
         >
           {t("viewAll")} <ArrowRight size={14} />
         </Link>
