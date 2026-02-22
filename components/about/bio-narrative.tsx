@@ -3,45 +3,8 @@
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { placeholderArtist } from "@/lib/placeholder-data";
-
-const ease = [0.22, 1, 0.36, 1] as const;
-
-/** Highlights specific phrases in gold within a text string */
-function HighlightedBio({ text, highlights }: { text: string; highlights: string[] }) {
-  let parts: { text: string; highlighted: boolean }[] = [{ text, highlighted: false }];
-
-  for (const phrase of highlights) {
-    const newParts: typeof parts = [];
-    for (const part of parts) {
-      if (part.highlighted) {
-        newParts.push(part);
-        continue;
-      }
-      const idx = part.text.indexOf(phrase);
-      if (idx === -1) {
-        newParts.push(part);
-        continue;
-      }
-      if (idx > 0) newParts.push({ text: part.text.slice(0, idx), highlighted: false });
-      newParts.push({ text: phrase, highlighted: true });
-      if (idx + phrase.length < part.text.length)
-        newParts.push({ text: part.text.slice(idx + phrase.length), highlighted: false });
-    }
-    parts = newParts;
-  }
-
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.highlighted ? (
-          <span key={i} className="text-gold">{part.text}</span>
-        ) : (
-          <span key={i}>{part.text}</span>
-        )
-      )}
-    </>
-  );
-}
+import { HighlightedText } from "@/components/shared/highlighted-text";
+import { galleryEase } from "@/lib/animations";
 
 export function BioNarrative() {
   const locale = useLocale();
@@ -81,19 +44,19 @@ export function BioNarrative() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, ease }}
+            transition={{ duration: 0.5, ease: galleryEase }}
             className="font-accent text-parchment text-lg leading-[1.8]"
           >
-            <HighlightedBio text={col1} highlights={highlights} />
+            <HighlightedText text={col1} highlights={highlights} />
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5, ease }}
+            transition={{ delay: 0.1, duration: 0.5, ease: galleryEase }}
             className="font-accent text-parchment text-lg leading-[1.8]"
           >
-            <HighlightedBio text={col2} highlights={highlights} />
+            <HighlightedText text={col2} highlights={highlights} />
           </motion.p>
         </div>
 
@@ -102,7 +65,7 @@ export function BioNarrative() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6, ease }}
+          transition={{ delay: 0.2, duration: 0.6, ease: galleryEase }}
           className="mt-16 md:mt-20 text-center"
         >
           <div className="gold-line max-w-[40px] mx-auto mb-8" />

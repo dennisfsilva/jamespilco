@@ -7,7 +7,7 @@ import { NAV_LINKS } from "@/lib/constants";
 import { LocaleSwitcher } from "./locale-switcher";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 interface NavMobileProps {
   open: boolean;
@@ -64,7 +64,7 @@ export function NavMobile({ open, onClose }: NavMobileProps) {
                 transition={{
                   delay: 0.1 + i * 0.1,
                   duration: 0.5,
-                  ease,
+                  ease: galleryEase,
                 }}
               >
                 <Link

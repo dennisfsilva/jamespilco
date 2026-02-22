@@ -10,8 +10,7 @@ import { getLocalizedText, formatDimensions } from "@/lib/locale-text";
 import type { Artwork } from "@/types/artwork";
 import { ArrowLeft, ZoomIn } from "lucide-react";
 import { ArtworkLightbox } from "./artwork-lightbox";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 export function ArtworkImmersive({ artwork }: { artwork: Artwork }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -54,7 +53,7 @@ export function ArtworkImmersive({ artwork }: { artwork: Artwork }) {
           onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLightboxOpen(true); } }}
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease }}
+          transition={{ duration: 1.2, ease: galleryEase }}
           onClick={() => setLightboxOpen(true)}
         >
           <Image
@@ -75,7 +74,7 @@ export function ArtworkImmersive({ artwork }: { artwork: Artwork }) {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, ease }}
+          transition={{ delay: 0.6, duration: 0.6, ease: galleryEase }}
           className="text-center mt-8 md:mt-12"
         >
           <h1 className="font-display font-bold text-cream text-2xl md:text-3xl lg:text-4xl">

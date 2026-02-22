@@ -4,12 +4,9 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
-import type { Artwork } from "@/types/artwork";
 import { placeholderArtworks } from "@/lib/placeholder-data";
 import { resolveImageUrl } from "@/sanity/lib/image";
 import { getLocalizedText } from "@/lib/locale-text";
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export function RelatedWorks({ currentSlug }: { currentSlug: string }) {
   const t = useTranslations("artwork");

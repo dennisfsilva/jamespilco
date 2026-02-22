@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ArrowRight, MessageCircle } from "lucide-react";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 export function CtaClosing() {
   const t = useTranslations("home.cta");
@@ -27,7 +26,7 @@ export function CtaClosing() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease }}
+          transition={{ duration: 0.8, ease: galleryEase }}
           className="font-display font-bold text-cream text-3xl md:text-[2.75rem] leading-snug"
         >
           {t("title").split("\n").map((line, i) => (
@@ -42,7 +41,7 @@ export function CtaClosing() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.15, duration: 0.7, ease }}
+          transition={{ delay: 0.15, duration: 0.7, ease: galleryEase }}
           className="font-accent italic text-stone text-lg mt-4"
         >
           {t("subtitle")}
@@ -52,7 +51,7 @@ export function CtaClosing() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6, ease }}
+          transition={{ delay: 0.2, duration: 0.6, ease: galleryEase }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
         >
           <Link

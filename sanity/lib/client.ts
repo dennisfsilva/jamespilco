@@ -2,6 +2,7 @@ import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId } from "../env";
 import { SITE_SETTINGS_QUERY } from "./queries";
 import type { SiteSettings } from "@/types/artist";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export const client = createClient({
   projectId,
@@ -27,12 +28,11 @@ export async function sanityFetch<T>(
 
 const SITE_SETTINGS_FALLBACK: SiteSettings = {
   _id: "site-settings",
-  whatsappNumber: "593999256686",
-  email: "james@jamespilco.com",
-  instagram: "https://instagram.com/jamespilcoluzuriaga",
-  linkedin:
-    "https://www.linkedin.com/in/james-stanley-pilco-luzuriaga-5a557040/",
-  location: "Cuenca, Ecuador",
+  whatsappNumber: SITE_CONFIG.whatsappNumber,
+  email: SITE_CONFIG.email,
+  instagram: SITE_CONFIG.instagram,
+  linkedin: SITE_CONFIG.linkedin,
+  location: SITE_CONFIG.location,
 };
 
 export async function fetchSiteSettings(): Promise<SiteSettings> {

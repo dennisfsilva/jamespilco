@@ -1,5 +1,5 @@
 import type { Artwork } from "@/types/artwork";
-import { getLocalizedText, formatPrice, formatDimensions } from "@/lib/locale-text";
+import { getLocalizedText } from "@/lib/locale-text";
 import { resolveImageUrl } from "@/sanity/lib/image";
 import { SITE_CONFIG } from "@/lib/constants";
 

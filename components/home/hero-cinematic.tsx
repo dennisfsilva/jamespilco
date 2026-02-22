@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 export function HeroCinematic() {
   const t = useTranslations("home.hero");
@@ -26,7 +26,7 @@ export function HeroCinematic() {
           className="relative w-[72%] sm:w-[55%] md:w-[45%] lg:w-[38%]"
           initial={{ opacity: 0, scale: 1.12 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.5, ease }}
+          transition={{ duration: 2.5, ease: galleryEase }}
         >
           <div
             className="will-change-transform"
@@ -72,7 +72,7 @@ export function HeroCinematic() {
           className="font-body font-semibold text-gold text-[11px] md:text-xs tracking-[0.35em] uppercase mb-5"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8, ease }}
+          transition={{ delay: 1.5, duration: 0.8, ease: galleryEase }}
         >
           {t("name")}
         </motion.p>
@@ -88,7 +88,7 @@ export function HeroCinematic() {
               transition={{
                 delay: 2 + i * 0.3,
                 duration: 0.9,
-                ease,
+                ease: galleryEase,
               }}
             >
               {line}

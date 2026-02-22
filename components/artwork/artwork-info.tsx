@@ -7,8 +7,7 @@ import type { Artwork } from "@/types/artwork";
 import { getLocalizedText, formatPrice } from "@/lib/locale-text";
 import { SITE_CONFIG } from "@/lib/constants";
 import { MessageCircle, Mail, Share2, Check } from "lucide-react";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 export function ArtworkInfo({ artwork }: { artwork: Artwork }) {
   const t = useTranslations("artwork");
@@ -47,7 +46,7 @@ export function ArtworkInfo({ artwork }: { artwork: Artwork }) {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease }}
+          transition={{ duration: 0.5, ease: galleryEase }}
           className="mx-auto max-w-3xl text-center"
         >
           <p className="font-body font-semibold text-gold text-xs tracking-[0.2em] uppercase mb-6">
@@ -70,7 +69,7 @@ export function ArtworkInfo({ artwork }: { artwork: Artwork }) {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1, duration: 0.5, ease }}
+          transition={{ delay: 0.1, duration: 0.5, ease: galleryEase }}
           className="mx-auto max-w-lg text-center"
         >
           {/* Price / Status */}

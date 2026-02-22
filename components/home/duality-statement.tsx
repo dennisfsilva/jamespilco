@@ -4,44 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 import { placeholderArtist } from "@/lib/placeholder-data";
-
-const ease = [0.22, 1, 0.36, 1] as const;
-
-function HighlightedText({ text, highlights }: { text: string; highlights: string[] }) {
-  let parts: { text: string; highlighted: boolean }[] = [{ text, highlighted: false }];
-
-  for (const phrase of highlights) {
-    const newParts: typeof parts = [];
-    for (const part of parts) {
-      if (part.highlighted) {
-        newParts.push(part);
-        continue;
-      }
-      const idx = part.text.indexOf(phrase);
-      if (idx === -1) {
-        newParts.push(part);
-        continue;
-      }
-      if (idx > 0) newParts.push({ text: part.text.slice(0, idx), highlighted: false });
-      newParts.push({ text: phrase, highlighted: true });
-      if (idx + phrase.length < part.text.length)
-        newParts.push({ text: part.text.slice(idx + phrase.length), highlighted: false });
-    }
-    parts = newParts;
-  }
-
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.highlighted ? (
-          <span key={i} className="text-gold">{part.text}</span>
-        ) : (
-          <span key={i}>{part.text}</span>
-        )
-      )}
-    </>
-  );
-}
+import { HighlightedText } from "@/components/shared/highlighted-text";
+import { galleryEase } from "@/lib/animations";
 
 export function DualityStatement() {
   const locale = useLocale();
@@ -88,7 +52,7 @@ export function DualityStatement() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease }}
+            transition={{ duration: 1, ease: galleryEase }}
           >
             <div className="spotlight">
               <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
@@ -114,7 +78,7 @@ export function DualityStatement() {
                 transition={{
                   delay: Math.min(i * 0.08, 0.4),
                   duration: 0.6,
-                  ease,
+                  ease: galleryEase,
                 }}
                 className="font-accent text-cream/90 text-lg md:text-xl lg:text-2xl leading-[1.8]"
               >

@@ -8,15 +8,12 @@ import { placeholderArtworks } from "@/lib/placeholder-data";
 import { resolveImageUrl } from "@/sanity/lib/image";
 import { getLocalizedText, formatPrice } from "@/lib/locale-text";
 import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { galleryEase } from "@/lib/animations";
 
 export function FeaturedScroll() {
   const t = useTranslations("home.featured");
   const tArtwork = useTranslations("artwork");
   const locale = useLocale();
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const featured = placeholderArtworks.filter((a) => a.featured);
 
@@ -40,7 +37,7 @@ export function FeaturedScroll() {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease }}
+        transition={{ duration: 0.6, ease: galleryEase }}
         className="relative text-center mb-10"
       >
         <p className="font-body font-semibold text-gold text-[11px] tracking-[0.35em] uppercase">
@@ -51,7 +48,6 @@ export function FeaturedScroll() {
 
       {/* Scroll container */}
       <div
-        ref={scrollRef}
         className="relative flex gap-6 md:gap-8 overflow-x-auto px-6 sm:px-10 lg:px-20 pb-4 scrollbar-none snap-x snap-mandatory"
       >
         {featured.map((artwork, i) => {
@@ -65,7 +61,7 @@ export function FeaturedScroll() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.08, duration: 0.6, ease }}
+              transition={{ delay: i * 0.08, duration: 0.6, ease: galleryEase }}
               className="flex-shrink-0 w-[280px] md:w-[320px] group snap-start"
             >
               <Link href={`/artwork/${artwork.slug.current}`}>

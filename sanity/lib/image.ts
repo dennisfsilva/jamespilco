@@ -1,6 +1,5 @@
 import { createImageUrlBuilder } from "@sanity/image-url";
 import { dataset, projectId } from "../env";
-import type { Artwork } from "@/types/artwork";
 
 const imageBuilder = createImageUrlBuilder({ projectId, dataset });
 
@@ -16,14 +15,4 @@ export function resolveImageUrl(source: any): string {
     return ref;
   }
   return urlForImage(source).url();
-}
-
-export function resolveArtworkImageUrls(artworks: Artwork[]): Artwork[] {
-  return artworks.map((a) => {
-    const image = Array.isArray(a.images) ? a.images[0] : a.images;
-    return {
-      ...a,
-      imageUrl: image?.asset?._ref ? resolveImageUrl(image) : undefined,
-    };
-  });
 }
