@@ -20,7 +20,9 @@ export interface Artist {
   _type: "artist";
   name: string;
   bio: LocalizedBlock;
+  duality: LocalizedString;
   statement: LocalizedBlock;
+  essay: LocalizedBlock;
   portrait: ArtworkImage;
   studioPhotos?: ArtworkImage[];
   exhibitions?: Exhibition[];

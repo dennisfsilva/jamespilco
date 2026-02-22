@@ -3,11 +3,12 @@
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { placeholderArtist } from "@/lib/placeholder-data";
+import { getLocalizedText } from "@/lib/locale-text";
 
 export function ArtistStatement() {
   const t = useTranslations("about");
   const locale = useLocale();
-  const statement = locale === "en" ? placeholderArtist.statementEn : placeholderArtist.statementEs;
+  const statement = getLocalizedText(placeholderArtist.statement, locale);
 
   return (
     <section className="relative bg-void py-20 md:py-28">

@@ -12,10 +12,10 @@ interface TimelineEntry {
 }
 
 const TIMELINE_DATA: TimelineEntry[] = [
-  { year: "1968", title: { es: "Nace en Cuenca, Ecuador", en: "Born in Cuenca, Ecuador" } },
-  { year: "1972", title: { es: "Comienza a pintar a los 4 años", en: "Begins painting at age 4" }, note: { es: "Sin academias, sin guías, simplemente la pasión.", en: "No academies, no guides, just the passion." } },
-  { year: "1980", title: { es: "12 años de educación jesuita", en: "12 years of Jesuit education" } },
-  { year: "1985", title: { es: "Primera exposición a los 17", en: "First exhibition at 17" }, description: { es: "Galería del Banco del Pacífico", en: "Galería del Banco del Pacífico" } },
+  { year: "1965", title: { es: "Nace en Cuenca, Ecuador", en: "Born in Cuenca, Ecuador" } },
+  { year: "1969", title: { es: "Comienza a pintar a los 4 años", en: "Begins painting at age 4" }, note: { es: "Sin academias, sin guías, simplemente la pasión.", en: "No academies, no guides, just the passion." } },
+  { year: "1977", title: { es: "12 años de educación jesuita", en: "12 years of Jesuit education" } },
+  { year: "1982", title: { es: "Primera exposición a los 17", en: "First exhibition at 17" }, description: { es: "Galería del Banco del Pacífico", en: "Galería del Banco del Pacífico" } },
   { year: "~1990", title: { es: "Título de Medicina, Universidad de Cuenca", en: "Medical degree, Universidad de Cuenca" } },
   { year: "~1993", title: { es: "Especialización en UNAM, Ciudad de México", en: "Specialization at UNAM, Mexico City" }, note: { es: "Los bisturís pagados con pinceles.", en: "Scalpels paid for with brushstrokes." } },
   { year: "1996", title: { es: "Museo Mural Diego Rivera", en: "Museo Mural Diego Rivera" }, description: { es: "Ciudad de México", en: "Mexico City" }, note: { es: "«Nunca dejes de pintar, nunca dejes de escribir.»", en: "'Never stop painting, never stop writing.'" } },

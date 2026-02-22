@@ -3,12 +3,13 @@
 import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { placeholderArtist } from "@/lib/placeholder-data";
+import { getLocalizedText } from "@/lib/locale-text";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export function ArtistEssay() {
   const t = useTranslations("about");
   const locale = useLocale();
-  const essay = locale === "en" ? placeholderArtist.essayEn : placeholderArtist.essayEs;
+  const essay = getLocalizedText(placeholderArtist.essay, locale);
   const paragraphs = essay.split("\n\n");
 
   return (

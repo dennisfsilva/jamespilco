@@ -16,8 +16,28 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "duality",
+      title: "Duality Quote",
+      description: "Short quote about art & medicine duality (shown on homepage)",
+      type: "object",
+      fields: [
+        { name: "es", type: "text", title: "Español" },
+        { name: "en", type: "text", title: "English" },
+      ],
+    }),
+    defineField({
       name: "statement",
       title: "Artist Statement",
+      type: "object",
+      fields: [
+        { name: "es", type: "blockContent", title: "Español" },
+        { name: "en", type: "blockContent", title: "English" },
+      ],
+    }),
+    defineField({
+      name: "essay",
+      title: "Essay — La Edad de James",
+      description: "Personal essay by the artist",
       type: "object",
       fields: [
         { name: "es", type: "blockContent", title: "Español" },

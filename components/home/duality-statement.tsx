@@ -5,15 +5,13 @@ import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 import { placeholderArtist } from "@/lib/placeholder-data";
 import { HighlightedText } from "@/components/shared/highlighted-text";
+import { getLocalizedText } from "@/lib/locale-text";
 import { galleryEase } from "@/lib/animations";
 
 export function DualityStatement() {
   const locale = useLocale();
 
-  const statement =
-    locale === "en"
-      ? placeholderArtist.dualityEn
-      : placeholderArtist.dualityEs;
+  const statement = getLocalizedText(placeholderArtist.duality, locale);
 
   const sentences = statement.split(/(?<=\.)\s+/).filter(Boolean);
 

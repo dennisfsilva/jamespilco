@@ -4,12 +4,13 @@ import { useLocale, useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { placeholderArtist } from "@/lib/placeholder-data";
 import { HighlightedText } from "@/components/shared/highlighted-text";
+import { getLocalizedText } from "@/lib/locale-text";
 import { galleryEase } from "@/lib/animations";
 
 export function BioNarrative() {
   const locale = useLocale();
   const t = useTranslations("about");
-  const bio = locale === "en" ? placeholderArtist.bioEn : placeholderArtist.bioEs;
+  const bio = getLocalizedText(placeholderArtist.bio, locale);
 
   const highlights =
     locale === "en"

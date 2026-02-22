@@ -66,6 +66,16 @@ export default defineType({
       initialValue: "available",
     }),
     defineField({
+      name: "shortDescription",
+      title: "Short Description",
+      description: "Brief text shown on artwork detail page (1-2 sentences)",
+      type: "object",
+      fields: [
+        { name: "es", type: "string", title: "Español" },
+        { name: "en", type: "string", title: "English" },
+      ],
+    }),
+    defineField({
       name: "description",
       title: "Description / Story",
       type: "object",
